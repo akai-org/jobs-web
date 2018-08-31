@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SiteContainer = styled.div`
+const Container = styled.div`
   padding: 0 2rem;
 
   ${props => props.fullWidth ? 
@@ -15,4 +15,4 @@ const SiteContainer = styled.div`
   `}
 `;
 
-export default SiteContainer;
+export default Container;

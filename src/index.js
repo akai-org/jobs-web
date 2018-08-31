@@ -8,14 +8,13 @@ import theme from "./styles/theme";
 import App from "./containers/App";
 import registerServiceWorker from "./registerServiceWorker";
 import { injectGlobal } from 'styled-components';
+import "normalize.css";
 
 // Better solution may be needed
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&subset=latin-ext');
 
   body {
-    margin: 0;
-    padding: 0;
     font-family: "Lato", sans-serif;
     font-size: 14px;
   }

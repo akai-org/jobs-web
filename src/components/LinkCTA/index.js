@@ -1,8 +1,6 @@
-import React, { Component } from "react";
 import styled from "styled-components";
-import polished from "polished";
 
-const Button = styled.a`
+const LinkCTA = styled.a`
   cursor: pointer;
   display: inline-block;
   font-family: ${props => props.theme.font.family.base};
@@ -22,12 +20,13 @@ const Button = styled.a`
   text-align: center;
   
   &:hover {
-    opacity: 0.8;
+    opacity: ${props => props.theme.effects.hover.opacity};
   }
   
   ${props => props.theme.media.mobile`
-    background: dodgerblue;
+    font-size: ${props => props.theme.font.size.label.secondary};
+    padding: ${props => props.primary ? "1rem 2rem" : "0.75rem 2rem"};
   `}
 `;
 
-export default Button;
+export default LinkCTA;

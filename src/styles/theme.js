@@ -7,7 +7,7 @@ const breakpoints = {
 
 const media = Object.keys(breakpoints).reduce((acc, label) => {
   acc[label] = (...args) => css`
-    @media screen and (max-width: ${breakpoints[label] / 16}em) {
+    @media screen and (max-width: ${breakpoints[label]}px) {
       ${css(...args)}
     }
   `;
@@ -46,7 +46,7 @@ const theme = {
       base: "\"Lato\", sans-serif"
     },
     size: {
-      base: "14px",
+      base: "16px",
       heading: {
         primary: "2rem",
         secondary: "1.5rem",

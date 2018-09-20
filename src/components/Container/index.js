@@ -6,7 +6,7 @@ const Container = styled.div`
   ${props => props.fullWidth ? 
   'width: 100%;'
   :
-  'max-width: 85em;' +
+  'max-width: 80rem;' +
   'margin: 0 auto'
   }
   

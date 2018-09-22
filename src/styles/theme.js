@@ -5,7 +5,7 @@ const breakpoints = {
   mobile: 640
 };
 
-const media = Object.keys(breakpoints).reduce((acc, label) => {
+const media = () => Object.keys(breakpoints).reduce((acc, label) => {
   acc[label] = (...args) => css`
     @media screen and (max-width: ${breakpoints[label]}px) {
       ${css(...args)}
@@ -16,6 +16,7 @@ const media = Object.keys(breakpoints).reduce((acc, label) => {
 }, {});
 
 const theme = {
+  name: "DEFAULT",
   color: {
     accent: {
       primary: "#226ce7",
@@ -89,7 +90,7 @@ const theme = {
       opacity: "0.8"
     }
   },
-  media: Object.assign({}, media)
+  media: media()
 };
 
 export default theme;

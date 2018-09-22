@@ -23,10 +23,12 @@ const LinkCTA = styled.a`
     opacity: ${props => props.theme.effects.hover.opacity};
   }
   
-  ${props => props.theme.media.mobile`
+  ${props => props.theme.media.mobile ? props.theme.media.mobile`
     font-size: ${props => props.theme.font.size.label.secondary};
-    padding: ${props => props.primary ? "1rem 2rem" : "0.75rem 2rem"};
-  `}
+    padding: ${props => props.primary ? "10rem 20rem" : "0.75rem 2rem"};
+  ` : ``}
 `;
+
+LinkCTA.displayName = "LinkCTA";
 
 export default LinkCTA;

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import reducerExample from "./reducerExample";
+import isMenuOpened from "./isMenuOpened";
 
 export default combineReducers({
-  reducerExample
+  isMenuOpened
 });

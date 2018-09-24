@@ -77,13 +77,13 @@ const theme = {
   },
   effects: {
     shadow: {
-      box: "0px 3px 15px 0 rgba(0,0,0,.06)",
-      header: "0px 3px 15px 0 rgba(0,0,0,.06)",
+      box: "0 3px 15px 0 rgba(0, 0, 0, 0.06)",
+      header: "0 3px 15px 0 rgba(0, 0, 0, 0.06)",
     },
     transition: {
       quick: "0.2s ease-out",
-      slow: "0.4s ease-out",
-      slower: "1s ease-out",
+      base: "0.4s ease-out",
+      slow: "1s ease-out",
     },
     hover: {
       opacity: "0.8"

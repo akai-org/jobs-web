@@ -5,27 +5,30 @@ import { ThemeProvider } from "styled-components";
 import { createStore } from "redux";
 import reducers from "./reducers";
 import theme from "./styles/theme";
-import App from "./containers/App";
+import HomePage from "./containers/HomePage/index";
+import AboutPage from "./containers/AboutPage/index";
+import ContactPage from "./containers/ContactPage/index";
 import registerServiceWorker from "./registerServiceWorker";
-import { injectGlobal } from 'styled-components';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
 import "normalize.css";
+import Layout from "./components/Layout";
 
-// Better solution may be needed
-injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&subset=latin-ext');
-
-  body {
-    font-family: "Lato", sans-serif;
-    font-size: 14px;
-  }
-`;
-
-const store = createStore(reducers);
+const store = createStore(
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <App />
+      <Router>
+        <Layout>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/contact" component={ContactPage} />
+        </Layout>
+      </Router>
     </ThemeProvider>
   </Provider>,
   document.getElementById("root")

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import LinkCTA from "../LinkCTA/index";
 import { Link } from "react-router-dom";
@@ -174,38 +174,39 @@ const StyledInner = styled.span`
   `}
 `;
 
-class Navigation extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Navigation = props => {
+  const { 
+    isMenuOpened, 
+    onLinkClick, 
+    onMobileMenuButtonClick, 
+    onOverlayClick
+  } = props;
 
-  render() {
-    return (
-      <Fragment>
-        <StyledNav isMenuOpened={this.props.isMenuOpened}>
-          <StyledWrapper isMenuOpened={this.props.isMenuOpened}>
-            <StyledList>
-              <li>
-                <StyledLink to="/about"
-                  onClick={this.props.onLinkClick}>O nas</StyledLink>
-              </li>
-              <li>
-                <StyledLink to="/contact"
-                  onClick={this.props.onLinkClick}>Contact</StyledLink>
-              </li>
-            </StyledList>
-            <StyledCTA to="/" onClick={this.props.onLinkClick} >Dodaj ofertę</StyledCTA>
-          </StyledWrapper>
-        </StyledNav>
-        <StyledButton onClick={this.props.onMobileMenuButtonClick}>
-          <StyledInner isMenuOpened={this.props.isMenuOpened} />
-        </StyledButton>
-        <StyledOverlay 
-          isMenuOpened={this.props.isMenuOpened}
-          onClick={this.props.isMenuOpened && this.props.onLinkClick} />
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <StyledNav isMenuOpened={isMenuOpened}>
+        <StyledWrapper isMenuOpened={isMenuOpened}>
+          <StyledList>
+            <li>
+              <StyledLink to="/about"
+                onClick={onLinkClick}>O nas</StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/contact"
+                onClick={onLinkClick}>Contact</StyledLink>
+            </li>
+          </StyledList>
+          <StyledCTA to="/" onClick={onLinkClick} >Dodaj ofertę</StyledCTA>
+        </StyledWrapper>
+      </StyledNav>
+      <StyledButton onClick={onMobileMenuButtonClick}>
+        <StyledInner isMenuOpened={isMenuOpened} />
+      </StyledButton>
+      <StyledOverlay 
+        isMenuOpened={isMenuOpened}
+        onClick={onOverlayClick} />
+    </Fragment>
+  );
 }
 
 export default Navigation;

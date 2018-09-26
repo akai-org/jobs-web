@@ -1,4 +1,4 @@
-import React, { Component, Element } from "react";
+import React from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import { createGlobalStyle } from 'styled-components';
@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Layout = (props) => (
+const Layout = props => (
   <div>
     <Header />
     {props.children}

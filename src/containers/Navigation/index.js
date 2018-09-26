@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { setMenuOpened, toggleMenuOpened } from "../../actions/index";
 import Navigation from "../../components/Navigation/index";
@@ -10,9 +10,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onLinkClick: () => dispatch(setMenuOpened(false)),
   onMobileMenuButtonClick: () => dispatch(toggleMenuOpened()),
+  onOverlayClick: () => dispatch(setMenuOpened(false))
 });
 
-const NavigationContainer = (props) => (
+const NavigationContainer = props => (
   <Navigation {...props} />
 );
 

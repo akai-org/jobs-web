@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import Container from "../Container/index";
 import logo from "../../assets/images/logo.svg";
@@ -25,19 +25,17 @@ const StyledLogo = styled.img`
   z-index: 300;
 `;
 
-const Header = (props) => {
-  return (
-    <StyledWrapper>
-      <Container>
-        <StyledContent>
-          <Link to="/">
-            <StyledLogo src={logo} />
-          </Link>
-          <Navigation />
-        </StyledContent>
-      </Container>
-    </StyledWrapper>
-  );
-}
+const Header = () => (
+  <StyledWrapper>
+    <Container>
+      <StyledContent>
+        <Link to="/">
+          <StyledLogo src={logo} />
+        </Link>
+        <Navigation />
+      </StyledContent>
+    </Container>
+  </StyledWrapper>
+);
 
 export default Header;

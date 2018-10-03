@@ -5,6 +5,7 @@
   "dependencies": {
     "normalize.css": "^8.0.0",
     "polished": "^2.0.3",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -24,6 +25,8 @@
     "@storybook/addon-info": "^3.4.11",
     "@storybook/addons": "^3.4.11",
     "@storybook/react": "^3.4.11",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.0.0",
     "storybook-addon-jsx": "^5.4.0",
     "storybook-addon-styled-component-theme": "^1.0.5"
   }

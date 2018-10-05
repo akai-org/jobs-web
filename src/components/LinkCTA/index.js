@@ -30,11 +30,6 @@ const LinkCTA = styled.a`
   `}
 `;
 
-  // ${props => props.theme.media.mobile`
-  //   font-size: ${props => props.theme.font.size.label.secondary};
-  //   padding: ${props => props.primary ? "10rem 20rem" : "0.75rem 2rem"};
-  // `}
-
 LinkCTA.displayName = "LinkCTA";
 
 export default LinkCTA;

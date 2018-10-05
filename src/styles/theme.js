@@ -1,20 +1,5 @@
 import { css } from "styled-components";
 
-const breakpoints = {
-  tablet: 1040,
-  mobile: 640
-};
-
-const media = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (...args) => css`
-    @media screen and (max-width: ${breakpoints[label]}px) {
-      ${css(...args)}
-    }
-  `;
-
-  return acc;
-}, {});
-
 const theme = {
   name: "DEFAULT",
   color: {
@@ -89,8 +74,7 @@ const theme = {
     hover: {
       opacity: "0.8"
     }
-  },
-  media: media
+  }
 };
 
 export default theme;

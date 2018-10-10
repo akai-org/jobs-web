@@ -199,7 +199,7 @@ const Navigation = props => {
           <StyledCTA to="/" onClick={onLinkClick} >Dodaj ofertę</StyledCTA>
         </StyledWrapper>
       </StyledNav>
-      <StyledButton onClick={onMobileMenuButtonClick}>
+      <StyledButton onClick={() => onMobileMenuButtonClick(isMenuOpened)}>
         <StyledInner isMenuOpened={isMenuOpened} />
       </StyledButton>
       <StyledOverlay 

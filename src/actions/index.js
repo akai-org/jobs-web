@@ -1,6 +1,5 @@
-export const ACTION_EXAMPLE = "ACTION_EXAMPLE";
+import { createAction } from './actionCreator';
 
-export const actionExample = text => ({
-  type: ACTION_EXAMPLE,
-  payload: {}
-});
+export const SET_MENU_OPENED = "SET_MENU_OPENED";
+
+export const setMenuOpened = state => createAction(SET_MENU_OPENED, state);

@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LinkCTA from './index';
-import wrapTheme from '../../utils/wrapTheme';
+import Navigation from './index';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  const ThemedLinkCTA = wrapTheme(<LinkCTA />);
-  ReactDOM.render(<ThemedLinkCTA />, div);
+  ReactDOM.render(<Navigation />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

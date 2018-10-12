@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LinkCTA from './index';
+import Layout from './index';
 import wrapTheme from '../../utils/wrapTheme';
+import wrapRouter from '../../utils/wrapRouter';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  const ThemedLinkCTA = wrapTheme(<LinkCTA />);
-  ReactDOM.render(<ThemedLinkCTA />, div);
+  const ThemedLayout = wrapTheme(<Layout />);
+  const RoutedLayout = wrapRouter(<ThemedLayout />);
+  ReactDOM.render(<RoutedLayout />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

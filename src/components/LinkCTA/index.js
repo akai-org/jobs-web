@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { mediaQueries } from '../../styles/mediaQueries';
 
 const LinkCTA = styled.a`
@@ -15,10 +16,11 @@ const LinkCTA = styled.a`
   font-size: ${props => props.theme.font.size.label.base};
   line-height: 1.2;
   max-width: ${props => props.primary ? "20em" : "12em"};
-  min-width: ${props => props.primary ? "10em" : "8em"};
+  min-width: ${props => props.primary ? "8em" : "6em"};
   padding: ${props => props.primary ? "1rem 2.5rem" : "0.75rem 2rem"};
   transition: opacity ${props => props.theme.effects.transition.quick};
   text-align: center;
+  text-decoration: none;
   
   &:hover {
     opacity: ${props => props.theme.effects.hover.opacity};

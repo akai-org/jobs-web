@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { mediaQueries } from './../../styles/mediaQueries'
+
 const Container = styled.div`
   padding: 0 2rem;
 
@@ -10,7 +12,7 @@ const Container = styled.div`
   'margin: 0 auto'
   }
   
-  ${props => props.theme.media.mobile`
+  ${props => mediaQueries.mobile`
     padding: 0 1rem;
   `}
 `;

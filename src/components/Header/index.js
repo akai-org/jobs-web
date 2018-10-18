@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 import Container from "../Container/index";
 import logo from "../../assets/images/logo.svg";
-import { Link } from "react-router-dom";
 import Navigation from "../../containers/Navigation";
+import { mediaQueries } from './../../styles/mediaQueries'
 
 const StyledWrapper = styled.header`
   padding: 1rem 0;
 
-  ${props => props.theme.media.mobile`
+  ${props => mediaQueries.mobile`
     font-size: ${props => props.theme.font.size.label.secondary};
   `}
 `;

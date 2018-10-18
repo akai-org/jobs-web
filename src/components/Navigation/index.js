@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
-import LinkCTA from "../LinkCTA/index";
 import { Link } from "react-router-dom";
+
+import LinkCTA from "../LinkCTA/index";
+import { mediaQueries } from './../../styles/mediaQueries'
 
 const StyledOverlay = styled.div`
   display: none;
 
-  ${props => props.theme.media.tablet`
+  ${props => mediaQueries.tablet`
     background: rgba(0, 0, 0, 0.2);
     position: fixed;
     display: block;
@@ -29,7 +31,7 @@ const StyledNav = styled.nav`
   background: ${props => props.theme.color.background.base};
   display: flex;
 
-  ${props => props.theme.media.tablet`
+  ${props => mediaQueries.tablet`
     position: fixed;
     display: block;
     width: 100%;
@@ -46,7 +48,7 @@ const StyledNav = styled.nav`
     `}
   `}
 
-  ${props => props.theme.media.mobile`
+  ${props => mediaQueries.mobile`
     padding-left: 1rem;
     padding-right: 1rem;
   `}
@@ -55,7 +57,7 @@ const StyledNav = styled.nav`
 const StyledWrapper = styled.div`
   display: flex;
   
-  ${props => props.theme.media.tablet`
+  ${props => mediaQueries.tablet`
     display: block;
     opacity: 0;
     transition: opacity ${props.theme.effects.transition.base} 0s;
@@ -74,7 +76,7 @@ const StyledList = styled.ul`
   display: flex;
   align-items: center;
 
-  ${props => props.theme.media.tablet`
+  ${props => mediaQueries.tablet`
     display: block;
     margin-bottom: 2rem;
   `}
@@ -92,7 +94,7 @@ const StyledLink = styled(Link)`
     opacity: ${props => props.theme.effects.hover.opacity}
   }
 
-  ${props => props.theme.media.tablet`
+  ${props => mediaQueries.tablet`
     margin-right: 0;
     padding: 1rem 0;
     font-size: ${props => props.theme.font.size.label.primary};
@@ -121,7 +123,7 @@ const StyledButton = styled.button`
     outline: 0;
   }
 
-  ${props => props.theme.media.tablet`
+  ${props => mediaQueries.tablet`
     display: flex;
   `}
 `;

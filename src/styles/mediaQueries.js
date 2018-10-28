@@ -8,7 +8,7 @@ export const breakpoints = {
 export const mediaQueries = Object.keys(breakpoints).reduce((acc, label) => {
   acc[label] = (...args) => css`
     @media screen and (max-width: ${breakpoints[label]}px) {
-      ${css(...args)}
+      ${css(...args)};
     }
   `;
 

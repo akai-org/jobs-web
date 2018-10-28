@@ -1,4 +1,4 @@
-import { createAction } from './actionCreator';
+import { createAction } from "./actionCreator";
 
 export const SET_MENU_OPENED = "SET_MENU_OPENED";
 

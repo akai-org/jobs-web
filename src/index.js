@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { createStore } from "redux";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import reducers from "./reducers";
 import theme from "./styles/theme";
 import HomePage from "./containers/HomePage/index";
@@ -15,7 +15,9 @@ import "normalize.css";
 
 const store = createStore(
   reducers,
+  /* eslint-disable */
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  /* eslint-enable */
 );
 
 render(

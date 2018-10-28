@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { createGlobalStyle } from "styled-components";
 import Header from "../Header";
 import Footer from "../Footer";
-import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&subset=latin-ext');
@@ -26,5 +27,7 @@ const Layout = props => (
     <GlobalStyle />
   </div>
 );
+
+Layout.propTypes = { children: PropTypes.node.isRequired };
 
 export default Layout;

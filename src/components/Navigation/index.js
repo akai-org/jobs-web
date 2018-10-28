@@ -1,14 +1,15 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import LinkCTA from "../LinkCTA/index";
-import { mediaQueries } from './../../styles/mediaQueries'
+import { mediaQueries } from "../../styles/mediaQueries";
 
 const StyledOverlay = styled.div`
   display: none;
 
-  ${props => mediaQueries.tablet`
+  ${() => mediaQueries.tablet`
     background: rgba(0, 0, 0, 0.2);
     position: fixed;
     display: block;
@@ -20,10 +21,12 @@ const StyledOverlay = styled.div`
     z-index: 100;
     transition: opacity ${props => props.theme.effects.transition.slow};
 
-    ${props => props.isMenuOpened && `
+    ${props =>
+      props.isMenuOpened &&
+      `
       opacity: 1;
     `}
-  `}
+  `};
 `;
 
 const StyledNav = styled.nav`
@@ -31,7 +34,7 @@ const StyledNav = styled.nav`
   background: ${props => props.theme.color.background.base};
   display: flex;
 
-  ${props => mediaQueries.tablet`
+  ${() => mediaQueries.tablet`
     position: fixed;
     display: block;
     width: 100%;
@@ -42,31 +45,32 @@ const StyledNav = styled.nav`
     z-index: 200;
     transition: transform ${props => props.theme.effects.transition.base} 0.2s;
 
-    ${props => props.isMenuOpened && `
+    ${props =>
+      props.isMenuOpened &&
+      `
       transform: translateY(0);
       transition-delay: 0s;
     `}
-  `}
-
-  ${props => mediaQueries.mobile`
+  `} ${() => mediaQueries.mobile`
     padding-left: 1rem;
     padding-right: 1rem;
-  `}
+  `};
 `;
 
 const StyledWrapper = styled.div`
   display: flex;
-  
+
   ${props => mediaQueries.tablet`
     display: block;
     opacity: 0;
     transition: opacity ${props.theme.effects.transition.base} 0s;
 
-    ${props.isMenuOpened && `
+    ${props.isMenuOpened &&
+      `
       opacity: 1;
       transition-delay: 0.2s;
     `}
-  `}
+  `};
 `;
 
 const StyledList = styled.ul`
@@ -76,10 +80,10 @@ const StyledList = styled.ul`
   display: flex;
   align-items: center;
 
-  ${props => mediaQueries.tablet`
+  ${() => mediaQueries.tablet`
     display: block;
     margin-bottom: 2rem;
-  `}
+  `};
 `;
 
 const StyledLink = styled(Link)`
@@ -87,19 +91,19 @@ const StyledLink = styled(Link)`
   font-weight: bold;
   margin-right: 3rem;
   text-decoration: none;
-  color: ${props => props.theme.color.text.primary}
-  transition: opacity ${props => props.theme.effects.transition.quick}
+  color: ${props => props.theme.color.text.primary};
+  transition: opacity ${props => props.theme.effects.transition.quick};
 
   &:hover {
-    opacity: ${props => props.theme.effects.hover.opacity}
+    opacity: ${props => props.theme.effects.hover.opacity};
   }
 
-  ${props => mediaQueries.tablet`
+  ${() => mediaQueries.tablet`
     margin-right: 0;
     padding: 1rem 0;
     font-size: ${props => props.theme.font.size.label.primary};
     font-weight: normal;
-  `}
+  `};
 `;
 
 const StyledCTA = LinkCTA.withComponent(Link);
@@ -123,9 +127,9 @@ const StyledButton = styled.button`
     outline: 0;
   }
 
-  ${props => mediaQueries.tablet`
+  ${() => mediaQueries.tablet`
     display: flex;
-  `}
+  `};
 `;
 
 const StyledInner = styled.span`
@@ -151,7 +155,9 @@ const StyledInner = styled.span`
     top: -10px;
   }
 
-  ${props => props.isMenuOpened && `
+  ${props =>
+    props.isMenuOpened &&
+    `
     &,
     &::before,
     &::after {
@@ -173,14 +179,14 @@ const StyledInner = styled.span`
         transform: rotate(-45deg);
       }
     }
-  `}
+  `};
 `;
 
 const Navigation = props => {
-  const { 
-    isMenuOpened, 
-    onLinkClick, 
-    onMobileMenuButtonClick, 
+  const {
+    isMenuOpened,
+    onLinkClick,
+    onMobileMenuButtonClick,
     onOverlayClick
   } = props;
 
@@ -190,25 +196,34 @@ const Navigation = props => {
         <StyledWrapper isMenuOpened={isMenuOpened}>
           <StyledList>
             <li>
-              <StyledLink to="/about"
-                onClick={onLinkClick}>O nas</StyledLink>
+              <StyledLink to="/about" onClick={onLinkClick}>
+                O nas
+              </StyledLink>
             </li>
             <li>
-              <StyledLink to="/contact"
-                onClick={onLinkClick}>Contact</StyledLink>
+              <StyledLink to="/contact" onClick={onLinkClick}>
+                Contact
+              </StyledLink>
             </li>
           </StyledList>
-          <StyledCTA to="/" onClick={onLinkClick} >Dodaj ofertę</StyledCTA>
+          <StyledCTA to="/" onClick={onLinkClick}>
+            Dodaj ofertę
+          </StyledCTA>
         </StyledWrapper>
       </StyledNav>
       <StyledButton onClick={() => onMobileMenuButtonClick(isMenuOpened)}>
         <StyledInner isMenuOpened={isMenuOpened} />
       </StyledButton>
-      <StyledOverlay 
-        isMenuOpened={isMenuOpened}
-        onClick={onOverlayClick} />
+      <StyledOverlay isMenuOpened={isMenuOpened} onClick={onOverlayClick} />
     </Fragment>
   );
-}
+};
+
+Navigation.propTypes = {
+  isMenuOpened: PropTypes.boolean.isRequired,
+  onLinkClick: PropTypes.function.isRequired,
+  onMobileMenuButtonClick: PropTypes.function.isRequired,
+  onOverlayClick: PropTypes.function.isRequired
+};
 
 export default Navigation;

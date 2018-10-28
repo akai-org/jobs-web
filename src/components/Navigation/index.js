@@ -220,10 +220,10 @@ const Navigation = props => {
 };
 
 Navigation.propTypes = {
-  isMenuOpened: PropTypes.boolean.isRequired,
-  onLinkClick: PropTypes.function.isRequired,
-  onMobileMenuButtonClick: PropTypes.function.isRequired,
-  onOverlayClick: PropTypes.function.isRequired
+  isMenuOpened: PropTypes.bool.isRequired,
+  onLinkClick: PropTypes.func.isRequired,
+  onMobileMenuButtonClick: PropTypes.func.isRequired,
+  onOverlayClick: PropTypes.func.isRequired
 };
 
 export default Navigation;

@@ -9,12 +9,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onLinkClick: () => dispatch(setMenuOpened(false)),
-  onMobileMenuButtonClick: isMenuOpened => dispatch(setMenuOpened(!isMenuOpened)),
+  onMobileMenuButtonClick: isMenuOpened =>
+    dispatch(setMenuOpened(!isMenuOpened)),
   onOverlayClick: () => dispatch(setMenuOpened(false))
 });
 
-const NavigationContainer = props => (
-  <Navigation {...props} />
-);
+const NavigationContainer = props => <Navigation {...props} />;
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavigationContainer);

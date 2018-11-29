@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/index";
 import AboutPage from "./pages/AboutPage/index";
 import ContactPage from "./pages/ContactPage/index";
 import Layout from "./components/Layout";
+import ListingPage from "./pages/ListingPage";
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -14,6 +15,7 @@ const App = () => (
         <Route exact path="/" component={HomePage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/contact" component={ContactPage} />
+        <Route path="/offers" component={ListingPage} />
       </Layout>
     </Router>
   </ThemeProvider>

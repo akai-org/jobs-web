@@ -26,7 +26,7 @@ export default () => (
     <SubHeading>Przeglądaj tysiące ofert i aplikuj.</SubHeading>
     <Paragraph>
       Strona AKAI Jobs pomaga codziennie tysiącom osób w znalezieniu najlepszego
-      punktu startowego na ścieżce kariery. Odkryj wymażoną pierwszą pracę i
+      punktu startowego na ścieżce kariery. Odkryj wymarzoną pierwszą pracę i
       zdobądź pierwsze doświadczenia w świecie IT.
     </Paragraph>
     <Image src="https://via.placeholder.com/350/ddddFF/808080" />

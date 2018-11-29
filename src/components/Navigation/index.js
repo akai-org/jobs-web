@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import LinkCTA from "../LinkCTA/index";
+import StyledCTA from "../StyledCTA";
 import { mediaQueries } from "../../styles/mediaQueries";
 
 const StyledOverlay = styled.div`
@@ -106,8 +106,6 @@ const StyledLink = styled(Link)`
   `};
 `;
 
-const StyledCTA = LinkCTA.withComponent(Link);
-
 const StyledButton = styled.button`
   display: none;
   background: none;
@@ -183,17 +181,18 @@ const StyledInner = styled.span`
 `;
 
 const Navigation = props => {
-  const {
-    isMenuOpened,
-    onLinkClick,
-    onMobileMenuButtonClick,
-    onOverlayClick
-  } = props;
+  const [menuState, setMenuState] = useState(false);
+
+  const { onOverlayClick } = props;
+
+  const onLinkClick = () => {
+    setMenuState(false);
+  };
 
   return (
     <Fragment>
-      <StyledNav isMenuOpened={isMenuOpened}>
-        <StyledWrapper isMenuOpened={isMenuOpened}>
+      <StyledNav isMenuOpened={menuState}>
+        <StyledWrapper isMenuOpened={menuState}>
           <StyledList>
             <li>
               <StyledLink to="/about" onClick={onLinkClick}>
@@ -211,10 +210,10 @@ const Navigation = props => {
           </StyledCTA>
         </StyledWrapper>
       </StyledNav>
-      <StyledButton onClick={() => onMobileMenuButtonClick(isMenuOpened)}>
-        <StyledInner isMenuOpened={isMenuOpened} />
+      <StyledButton onClick={() => setMenuState(!menuState)}>
+        <StyledInner isMenuOpened={menuState} />
       </StyledButton>
-      <StyledOverlay isMenuOpened={isMenuOpened} onClick={onOverlayClick} />
+      <StyledOverlay isMenuOpened={menuState} onClick={onOverlayClick} />
     </Fragment>
   );
 };

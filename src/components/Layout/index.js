@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { createGlobalStyle } from "styled-components";
-import Header from "../Header";
-import Footer from "../Footer";
+import Header from "../../containers/Header";
+import Footer from "../../containers/Footer";
+import "normalize.css";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&subset=latin-ext');
@@ -21,10 +22,10 @@ const GlobalStyle = createGlobalStyle`
 
 const Layout = props => (
   <div>
+    <GlobalStyle />
     <Header />
     {props.children}
     <Footer />
-    <GlobalStyle />
   </div>
 );
 

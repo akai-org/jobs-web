@@ -1,4 +1,7 @@
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ListingItem = styled.div`
   box-shadow: 0 0 10px #0001;
@@ -7,47 +10,76 @@ const ListingItem = styled.div`
   align-items: center;
   flex-direction: row;
   /* justify-content: space-around; */
+`;
 
-  .bar {
-    background: lime;
-    width: 20px;
-    height: 100%;
-    position: absolute;
-  }
+const Bar = styled.div`
+  background: lime;
+  width: 5px;
+  height: 100%;
+  position: absolute;
+`;
 
-  img {
-    margin: 0 40px;
-  }
+const CompanyImg = styled.img`
+  height: 64px;
+  margin: 0 25px;
+  object-fit: contain;
+  width: 64px;
+`;
 
-  h4 {
-    margin: 0;
-  }
+const JobTitle = styled.h4`
+  color: ${({ theme }) => theme.color.accent.primary};
+  margin: 0 0 3px 0;
+  text-decoration: none;
+`;
 
-  .metadata {
-    font-size: 14px;
+const JobMetaData = styled.div`
+  font-size: 14px;
 
-    > span {
-      &::after {
-        content: "·";
-        margin: 0 6px;
-      }
-
-      &:last-child::after {
-        content: "";
-      }
+  > span {
+    &::after {
+      content: "·";
+      margin: 0 6px;
     }
-  }
 
-  .salary {
-    color: green;
-  }
-
-  .skill {
-    border: 1px solid;
-    color: grey;
-    border-radius: 40px;
-    padding: 5px 10px;
+    &:last-child::after {
+      content: "";
+    }
   }
 `;
 
-export default ListingItem;
+const Salary = styled.div`
+  color: green;
+  margin: 0 10px 0 auto;
+`;
+
+const Skill = styled.div`
+  border: 1px solid;
+  color: grey;
+  border-radius: 40px;
+  padding: 5px 10px;
+  margin-right: 25px;
+`;
+
+const JobListingItem = ({ offer }) => (
+  <ListingItem>
+    <Bar />
+    <CompanyImg src={offer.image} />
+    <div>
+      <JobTitle as={Link} to={`/offer/${offer.id}`}>
+        {offer.name}
+      </JobTitle>
+      <JobMetaData>
+        <span>{offer.company}</span>
+        <span>{offer.location}</span>
+      </JobMetaData>
+    </div>
+    <Salary>{offer.salary}</Salary>
+    <Skill>{offer.level}</Skill>
+  </ListingItem>
+);
+
+JobListingItem.propTypes = {
+  offer: PropTypes.shape.isRequired
+};
+
+export default JobListingItem;

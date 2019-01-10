@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Header from "../../containers/Header";
 import Footer from "../../containers/Footer";
 import "normalize.css";
@@ -20,13 +20,18 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const LayoutWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 1200px;
+`;
+
 const Layout = props => (
-  <div>
+  <LayoutWrapper>
     <GlobalStyle />
     <Header />
     {props.children}
     <Footer />
-  </div>
+  </LayoutWrapper>
 );
 
 Layout.propTypes = { children: PropTypes.node.isRequired };

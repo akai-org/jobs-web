@@ -25,7 +25,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "storybook": "start-storybook -p 9876 -s public -c .storybook",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "lint": "lint-staged",
@@ -36,9 +35,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-react": "^7.11.1",
-    "storybook-addon-jsx": "^5.4.0",
-    "storybook-addon-styled-component-theme": "^1.0.5"
+    "eslint-plugin-react": "^7.11.1"
   },
   "husky": {
     "hooks": {

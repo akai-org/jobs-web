@@ -26,15 +26,19 @@ const JobItem = styled.div`
   `}
 `;
 
-const JobItemHeader = styled.div``;
+const JobItemHeader = styled.div`
+  min-width: 250px;
+  max-width: 60rem;
+  padding: 10px 0;
+`;
 
 const JobItemFooter = styled.div`
   align-items: center;
   display: flex;
   margin-left: auto;
+  min-width: 280px;
 
   ${mediaQueries.mobile`
-    margin-top: 10px;
     margin-left: 0;
   `}
 `;
@@ -61,6 +65,7 @@ const JobTitle = styled.h4`
 
 const JobMetaData = styled.div`
   font-size: 14px;
+  margin-top: 5px;
 
   > span {
     &::after {
@@ -76,7 +81,7 @@ const JobMetaData = styled.div`
 
 const Salary = styled.div`
   color: green;
-  margin: 0 10px 0 auto;
+  margin: 0 10px 0 0;
 
   ${mediaQueries.mobile`
     font-size: 12px;

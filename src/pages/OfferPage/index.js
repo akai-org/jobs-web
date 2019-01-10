@@ -5,14 +5,21 @@ import { Link } from "react-router-dom";
 import Container from "../../components/Container";
 
 const OfferPage = ({ match }) => {
-  const [offer, setOffer] = useState([]);
+  const [offer, setOffer] = useState(false);
+  const [company, setCompany] = useState(false);
 
   useEffect(() => {
     fetch(`/offer/${match.params.id}.json`)
       .then(data => data.json())
-      .then(data => setOffer(data))
+      .then(data => {
+        console.log(data);
+        setOffer(data);
+        fetch(`/company/${data.company.toLowerCase()}.json`)
+          .then(response => response.json())
+          .then(c => setCompany(c));
+      })
       .catch(() => {
-        window.location.pathname = "/";
+        // window.location.pathname = "/";
       });
   }, []);
 
@@ -23,16 +30,37 @@ const OfferPage = ({ match }) => {
   return (
     <Container>
       <Link to="/offers">Wróć do listy ofert</Link>
+      <img src={offer.image} alt={`Logo ${offer.company}`} />
       <h2>{offer.name}</h2>
-      <h2>{offer.salary}</h2>
+      <p>{offer.salary}</p>
 
       <h3>Wymagane umiejętności</h3>
+      <ul>
+        {offer.skills.map((skill, i) => (
+          <li key={i}>
+            {skill.name} - {skill.stars}
+          </li>
+        ))}
+      </ul>
 
       <h3>Technologie</h3>
+      <ul>
+        {offer.technologies.map((technology, i) => (
+          <li key={i}>{technology.name}</li>
+        ))}
+      </ul>
 
-      <h3>Perspektywy rozwoju</h3>
+      <h3>{offer.description.title}</h3>
+      {offer.description.text}
 
-      <h3>O firmie</h3>
+      {company ? (
+        <div>
+          <h3>O firmie</h3>
+          {company.description}
+        </div>
+      ) : (
+        ""
+      )}
     </Container>
   );
 };

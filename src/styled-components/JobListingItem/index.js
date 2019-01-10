@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 const ListingItem = styled.div`
@@ -7,47 +8,65 @@ const ListingItem = styled.div`
   align-items: center;
   flex-direction: row;
   /* justify-content: space-around; */
+`;
 
-  .bar {
-    background: lime;
-    width: 20px;
-    height: 100%;
-    position: absolute;
-  }
+const Bar = styled.div`
+  background: lime;
+  width: 5px;
+  height: 100%;
+  position: absolute;
+`;
 
-  img {
-    margin: 0 40px;
-  }
+const CompanyImg = styled.img`
+  margin: 0 25px;
+`;
 
-  h4 {
-    margin: 0;
-  }
+const JobTitle = styled.h4`
+  margin: 0 0 3px 0;
+`;
 
-  .metadata {
-    font-size: 14px;
+const JobMetaData = styled.div`
+  font-size: 14px;
 
-    > span {
-      &::after {
-        content: "·";
-        margin: 0 6px;
-      }
-
-      &:last-child::after {
-        content: "";
-      }
+  > span {
+    &::after {
+      content: "·";
+      margin: 0 6px;
     }
-  }
 
-  .salary {
-    color: green;
-  }
-
-  .skill {
-    border: 1px solid;
-    color: grey;
-    border-radius: 40px;
-    padding: 5px 10px;
+    &:last-child::after {
+      content: "";
+    }
   }
 `;
 
-export default ListingItem;
+const Salary = styled.div`
+  color: green;
+  margin: 0 10px 0 auto;
+`;
+
+const Skill = styled.div`
+  border: 1px solid;
+  color: grey;
+  border-radius: 40px;
+  padding: 5px 10px;
+  margin-right: 25px;
+`;
+
+const JobListingItem = () => (
+  <ListingItem>
+    <Bar />
+    <CompanyImg src="https://via.placeholder.com/60/ddddFF/808080" />
+    <div>
+      <JobTitle>Junior</JobTitle>
+      <JobMetaData>
+        <span>Cognifide</span>
+        <span>Poznań</span>
+      </JobMetaData>
+    </div>
+    <Salary>3000 - 4500 PLN</Salary>
+    <Skill>Level</Skill>
+  </ListingItem>
+);
+
+export default JobListingItem;

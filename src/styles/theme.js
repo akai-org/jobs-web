@@ -57,6 +57,12 @@ const theme = {
     border: {
       base: "2px",
       thin: "1px"
+    },
+    img: {
+      thumbnail: {
+        width: "64px",
+        height: "64px"
+      }
     }
   },
   effects: {

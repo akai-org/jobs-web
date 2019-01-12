@@ -32,7 +32,7 @@ const OfferPage = ({ match }) => {
       <Link to="/offers">Wróć do listy ofert</Link>
       <img src={offer.image} alt={`Logo ${offer.company}`} />
       <h2>{offer.name}</h2>
-      <p>{offer.salary}</p>
+      <p>{`${offer.salary.min} - ${offer.salary.max}`}</p>
 
       <h3>Wymagane umiejętności</h3>
       <ul>

@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { mediaQueries } from "../../../styles/mediaQueries";
 import JobOfferHeader from "./JobOfferHeader";
 import JobOfferMetaData from "./JobOfferMetaData";
 
@@ -13,7 +12,7 @@ const StyledWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  ${mediaQueries.mobile`
+  ${({ theme }) => theme.media.mobile`
     align-items: flex-start;
     flex-direction: column;
     padding: 10px 10px 20px 10px

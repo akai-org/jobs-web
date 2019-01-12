@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
-import { mediaQueries } from "../../../styles/mediaQueries";
-
 const JobOfferDetails = styled.div`
   align-items: center;
   display: flex;
   margin-left: auto;
   min-width: 280px;
 
-  ${mediaQueries.mobile`
+  ${({ theme }) => theme.media.mobile`
     margin-left: 0;
   `}
 `;

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { mediaQueries } from "../../../styles/mediaQueries";
-
 const JobOfferSkill = styled.div`
   border: 1px solid;
   color: grey;
@@ -11,7 +9,7 @@ const JobOfferSkill = styled.div`
   width: 80px;
   text-align: center;
 
-  ${mediaQueries.mobile`
+  ${({ theme }) => theme.media.mobile`
     font-size: 12px;
   `}
 `;

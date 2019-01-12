@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { mediaQueries } from "../../styles/mediaQueries";
-
 const LinkCTA = styled.a`
   cursor: pointer;
   display: inline-block;
@@ -27,7 +25,7 @@ const LinkCTA = styled.a`
     opacity: ${props => props.theme.effects.hover.opacity};
   }
 
-  ${mediaQueries.mobile`
+  ${({ theme }) => theme.media.mobile`
     font-size: ${props => props.theme.font.size.label.secondary};
     padding: ${props => (props.primary ? "1rem 2rem" : "0.75rem 2rem")};
   `};

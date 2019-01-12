@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { mediaQueries } from "../../../styles/mediaQueries";
 import LevelType from "../../../consts/LevelType";
-
 import JobOfferSalary from "./JobOfferSalary";
 import JobOfferSkill from "./JobOfferSkill";
 
@@ -14,7 +12,7 @@ const StyledWrapper = styled.div`
   justify-content: flex-end;
   min-width: 280px;
 
-  ${mediaQueries.mobile`
+  ${({ theme }) => theme.media.mobile`
     justify-content: flex-start;
   `}
 `;

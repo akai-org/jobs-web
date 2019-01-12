@@ -2,13 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { mediaQueries } from "../../../styles/mediaQueries";
-
 const StyledWrapper = styled.div`
   color: green;
   margin: 0 10px 0 0;
 
-  ${mediaQueries.mobile`
+  ${({ theme }) => theme.media.mobile`
     font-size: 12px;
   `}
 `;

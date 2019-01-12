@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import LevelType from "../../../consts/LevelType";
-import JobOfferSalary from "./JobOfferSalary";
-import JobOfferSkill from "./JobOfferSkill";
+import JobOfferSalary from "../JobOfferSalary";
+import JobOfferSkill from "../JobOfferSkill";
 
 const StyledWrapper = styled.div`
   align-items: center;

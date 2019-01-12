@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import JobOfferTitle from "./JobOfferTitle";
-import JobOfferCompany from "./JobOfferCompany";
+import JobOfferTitle from "../JobOfferTitle";
+import JobOfferCompany from "../JobOfferCompany";
 
 const StyledWrapper = styled.div`
   padding: 10px 0;

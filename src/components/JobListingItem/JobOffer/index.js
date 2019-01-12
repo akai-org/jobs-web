@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import JobOfferHeader from "./JobOfferHeader";
-import JobOfferMetaData from "./JobOfferMetaData";
+import JobOfferHeader from "../JobOfferHeader";
+import JobOfferMetaData from "../JobOfferMetaData";
 
 const StyledWrapper = styled.div`
   align-items: center;

@@ -4,12 +4,11 @@ import { Link } from "react-router-dom";
 import Container from "../../components/Container/index";
 import logo from "../../assets/images/logo.svg";
 import Navigation from "../Navigation";
-import { mediaQueries } from "../../styles/mediaQueries";
 
 const StyledWrapper = styled.header`
   padding: 1rem 0;
 
-  ${() => mediaQueries.mobile`
+  ${({ theme }) => theme.media.mobile`
     font-size: ${props => props.theme.font.size.label.secondary};
   `};
 `;

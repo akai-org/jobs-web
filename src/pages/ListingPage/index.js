@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import Container from "../../components/Container";
-import JobListingItem from "../../styled-components/JobListingItem";
+import JobListingItem from "../../components/JobListingItem";
+import JobListingPage from "../../styled-components/JobListingPage";
 
 const ListingPage = () => {
   const [offers, setOffers] = useState([]);
@@ -14,9 +15,11 @@ const ListingPage = () => {
 
   return (
     <Container>
-      {offers.map(offer => (
-        <JobListingItem key={offer.id} offer={offer} />
-      ))}
+      <JobListingPage>
+        {offers.map(offer => (
+          <JobListingItem key={offer.id} offer={offer} />
+        ))}
+      </JobListingPage>
     </Container>
   );
 };

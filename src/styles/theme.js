@@ -1,3 +1,20 @@
+import { css } from "styled-components";
+
+export const breakpoints = {
+  tablet: 1040,
+  mobile: 640
+};
+
+export const mediaQueries = Object.keys(breakpoints).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media screen and (max-width: ${breakpoints[label]}px) {
+      ${css(...args)};
+    }
+  `;
+
+  return acc;
+}, {});
+
 const theme = {
   name: "DEFAULT",
   color: {
@@ -57,6 +74,12 @@ const theme = {
     border: {
       base: "2px",
       thin: "1px"
+    },
+    img: {
+      thumbnail: {
+        width: "64px",
+        height: "64px"
+      }
     }
   },
   effects: {
@@ -72,7 +95,8 @@ const theme = {
     hover: {
       opacity: "0.8"
     }
-  }
+  },
+  media: mediaQueries
 };
 
 export default theme;

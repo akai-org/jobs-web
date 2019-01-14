@@ -1,15 +1,15 @@
 {
-  "id": "1",
+  "id": "2",
   "name": "Intern Software Developer",
   "company": "Cognifide",
   "location": "Poznań",
   "image": "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/12289639_956454094411220_6576048838492494916_n.jpg?_nc_cat=106&_nc_ht=scontent-waw1-1.xx&oh=4c1ac470853b31696f62eb0e53ae7001&oe=5CC09EA2",
   "salary": {
-    "min": "",
-    "max": ""
+    "min": "6000",
+    "max": "9500"
   },
-  "level": "INTERNSHIP",
-  "type": "BACKEND",
+  "level": "JUNIOR",
+  "type": "FRONTEND",
   "skills": [
     {
       "name": "HTML5",

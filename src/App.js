@@ -8,6 +8,7 @@ import ContactPage from "./pages/ContactPage/index";
 import Layout from "./components/Layout";
 import ListingPage from "./pages/ListingPage";
 import OfferPage from "./pages/OfferPage";
+import SignInPage from "./pages/SignInPage";
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -18,6 +19,7 @@ const App = () => (
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/offers" component={ListingPage} />
         <Route path="/offer/:id" component={OfferPage} />
+        <Route path="/signin" component={SignInPage} />
       </Layout>
     </Router>
   </ThemeProvider>

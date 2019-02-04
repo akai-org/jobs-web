@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
+import { withAuthentication } from "./firebase";
 import theme from "./styles/theme";
 import Layout from "./components/Layout";
 
@@ -27,4 +28,4 @@ const App = () => (
   </ThemeProvider>
 );
 
-export default App;
+export default withAuthentication(App);

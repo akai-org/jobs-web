@@ -1,11 +1,16 @@
 import Firebase from "./Firebase";
 import FirebaseContext, { withFirebase } from "./context";
-import SessionContext, { withAuthentication } from "./sessionContext";
+import AuthUserContext from "./sessionManagement/authUserContext";
+import withAuthentication from "./sessionManagement/withAuthentication";
+import withAuthorization from "./sessionManagement/withAuthorization";
+import useAuthUser from "./hooks/useAuthUser";
 
 export {
   Firebase as default,
   FirebaseContext,
   withFirebase,
-  SessionContext,
-  withAuthentication
+  AuthUserContext,
+  withAuthentication,
+  withAuthorization,
+  useAuthUser
 };

@@ -17,11 +17,11 @@ const App = () => (
     <Router>
       <Layout>
         <Suspense fallback={""}>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/about" component={AboutPage} />
-          <Route exact path="/contact" component={ContactPage} />
-          <Route exact path="/offers" component={ListingPage} />
-          <Route path="/offer/:id" component={OfferPage} />
+          <Route exact path="/" render={() => <HomePage />} />
+          <Route exact path="/about" render={() => <AboutPage />} />
+          <Route exact path="/contact" render={() => <ContactPage />} />
+          <Route exact path="/offers" render={() => <ListingPage />} />
+          <Route path="/offer/:id" render={() => <OfferPage />} />
         </Suspense>
       </Layout>
     </Router>

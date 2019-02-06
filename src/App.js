@@ -1,28 +1,33 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+
+import { withAuthentication } from "./firebase";
 import theme from "./styles/theme";
-import HomePage from "./pages/HomePage/index";
-import AboutPage from "./pages/AboutPage/index";
-import ContactPage from "./pages/ContactPage/index";
 import Layout from "./components/Layout";
-import ListingPage from "./pages/ListingPage";
-import OfferPage from "./pages/OfferPage";
-import SignInPage from "./pages/SignInPage";
+
+const HomePage = lazy(() => import("./pages/HomePage/index"));
+const AboutPage = lazy(() => import("./pages/AboutPage/index"));
+const ContactPage = lazy(() => import("./pages/ContactPage/index"));
+const ListingPage = lazy(() => import("./pages/ListingPage"));
+const OfferPage = lazy(() => import("./pages/OfferPage"));
+const SignInPage = lazy(() => import("./pages/SignInPage"));
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <Router>
       <Layout>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/about" component={AboutPage} />
-        <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/offers" component={ListingPage} />
-        <Route path="/offer/:id" component={OfferPage} />
-        <Route path="/signin" component={SignInPage} />
+        <Suspense fallback={""}>
+          <Route exact path="/" render={() => <HomePage />} />
+          <Route exact path="/about" render={() => <AboutPage />} />
+          <Route exact path="/contact" render={() => <ContactPage />} />
+          <Route exact path="/offers" render={() => <ListingPage />} />
+          <Route path="/offer/:id" render={() => <OfferPage />} />
+          <Route exact path="/signin" render={() => <SignInPage />} />
+        </Suspense>
       </Layout>
     </Router>
   </ThemeProvider>
 );
 
-export default App;
+export default withAuthentication(App);

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+import useAuthUser from "../../firebase/hooks/useAuthUser";
 import StyledCTA from "../StyledCTA";
 
 const StyledOverlay = styled.div`
@@ -208,6 +209,9 @@ const Navigation = props => {
           <StyledCTA to="/" onClick={onLinkClick}>
             Dodaj ofertę
           </StyledCTA>
+          <StyledCTA to="/signin" onClick={onLinkClick}>
+            Sign in
+          </StyledCTA>
         </StyledWrapper>
       </StyledNav>
       <StyledButton onClick={() => setMenuState(!menuState)}>
@@ -219,10 +223,10 @@ const Navigation = props => {
 };
 
 Navigation.propTypes = {
-  isMenuOpened: PropTypes.bool.isRequired,
-  onLinkClick: PropTypes.func.isRequired,
-  onMobileMenuButtonClick: PropTypes.func.isRequired,
-  onOverlayClick: PropTypes.func.isRequired
+  // isMenuOpened: PropTypes.bool.isRequired,
+  // onLinkClick: PropTypes.func.isRequired,
+  // onMobileMenuButtonClick: PropTypes.func.isRequired,
+  // onOverlayClick: PropTypes.func.isRequired
 };
 
 export default Navigation;

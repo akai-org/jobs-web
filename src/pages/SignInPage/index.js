@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 
+import { withFirebase } from "../../firebase/context";
 import Container from "../../components/Container";
 
-const SignInPage = () => {
+const SignInPage = ({ firebase }) => {
   async function showResults({ email, password }) {
+    firebase.login(email, password);
     return { email, password };
   }
 
@@ -46,4 +48,4 @@ const SignInPage = () => {
 
 SignInPage.propTypes = {};
 
-export default SignInPage;
+export default withFirebase(SignInPage);

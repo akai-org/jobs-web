@@ -3,6 +3,7 @@ import FirebaseContext, { withFirebase } from "./context";
 import AuthUserContext from "./sessionManagement/authUserContext";
 import withAuthentication from "./sessionManagement/withAuthentication";
 import withAuthorization from "./sessionManagement/withAuthorization";
+import withAuthUser from "./sessionManagement/withAuthUser";
 import useAuthUser from "./hooks/useAuthUser";
 
 export {
@@ -12,5 +13,6 @@ export {
   AuthUserContext,
   withAuthentication,
   withAuthorization,
-  useAuthUser
+  useAuthUser,
+  withAuthUser
 };

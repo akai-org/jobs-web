@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Form, Field } from "react-final-form";
+import { compose } from "recompose";
 
 import { withFirebase } from "../../firebase";
 import Container from "../../components/Container";
 
-const SignInPage = ({ firebase }) => {
+const SignInPage = ({ firebase, history }) => {
   // async function showResults({ email, password }) {
   //   firebase.login(email, password);
   //   return { email, password };
@@ -15,7 +16,7 @@ const SignInPage = ({ firebase }) => {
   const onSubmitHandler = values =>
     firebase
       .login(values.email, values.password)
-      .then(result => console.log(result))
+      .then(() => history.push("/new-offer"))
       .catch(error => console.log(error));
 
   const required = value => (value ? null : "Required");
@@ -54,7 +55,11 @@ const SignInPage = ({ firebase }) => {
 };
 
 SignInPage.propTypes = {
-  firebase: PropTypes.object
+  firebase: PropTypes.object,
+  history: PropTypes.object
 };
 
-export default withFirebase(SignInPage);
+export default compose(
+  withRouter,
+  withFirebase
+)(SignInPage);

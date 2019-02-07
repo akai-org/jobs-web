@@ -13,6 +13,7 @@ const ListingPage = lazy(() => import("./pages/ListingPage"));
 const OfferPage = lazy(() => import("./pages/OfferPage"));
 const SignInPage = lazy(() => import("./pages/SignInPage"));
 const AddOfferPage = lazy(() => import("./pages/AddOfferPage"));
+const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -26,6 +27,7 @@ const App = () => (
           <Route exact path="/new-offer" render={() => <AddOfferPage />} />
           <Route path="/offer/:id" render={() => <OfferPage />} />
           <Route exact path="/signin" render={() => <SignInPage />} />
+          <Route exact path="/signup" render={() => <SignUpPage />} />
         </Suspense>
       </Layout>
     </Router>

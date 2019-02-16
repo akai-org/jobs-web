@@ -1,15 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Form, Field } from "react-final-form";
+import styled from "styled-components";
 
 import { withFirebase } from "../../firebase";
 import Container from "../../components/Container";
+import {
+  Field as CustomField,
+  Label,
+  RequiredLabel
+} from "../../components/Form";
+import Heading from "../../styled-components/Heading";
+import Button from "../../styled-components/Button";
+import { required } from "../../validators";
+
+const StyledWrapper = styled.section`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0;
+`;
+
+const FormWrapper = styled.form`
+  width: 320px;
+`;
 
 const SignUpPage = ({ firebase }) => {
   const removeSensitiveData = company => {
     const newCompany = { ...company };
     delete newCompany.password;
-    delete newCompany.retypePassword;
+    delete newCompany.confirmPassword;
     return newCompany;
   };
 
@@ -28,62 +49,65 @@ const SignUpPage = ({ firebase }) => {
       .then(result => console.log(result))
       .catch(error => console.log(error));
 
-  const required = value => (value ? null : "Required");
-
   return (
     <Container>
-      <Form onSubmit={onSubmitHandler}>
-        {({ handleSubmit, submitting }) => (
-          <form onSubmit={handleSubmit}>
-            <Field name="email" placeholder="email address" validate={required}>
-              {({ input, meta, placeholder }) => (
-                <div>
-                  <label>Email</label>
-                  <input {...input} placeholder={placeholder} />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
+      <StyledWrapper>
+        <Heading>Rejestracja</Heading>
+        <Form onSubmit={onSubmitHandler}>
+          {({ handleSubmit, submitting }) => (
+            <FormWrapper onSubmit={handleSubmit}>
+              <RequiredLabel>Email</RequiredLabel>
+              <Field
+                name="email"
+                component={CustomField}
+                type="email"
+                validate={required}
+              />
 
-            <div>
-              <label>Password</label>
+              <RequiredLabel>Hasło</RequiredLabel>
               <Field
                 name="password"
-                component="input"
+                component={CustomField}
                 type="password"
-                placeholder="password"
                 validate={required}
               />
-            </div>
 
-            <div>
-              <label>Confirm Password</label>
+              <RequiredLabel>Powtórz hasło</RequiredLabel>
               <Field
-                name="retypePassword"
-                component="input"
+                name="confirmPassword"
+                component={CustomField}
                 type="password"
-                placeholder="confirm password"
                 validate={required}
               />
-            </div>
 
-            <div>
-              <label>Company Name</label>
+              <Label>Miasto</Label>
+              <Field name="city" component={CustomField} type="text" />
+
+              <Label>Adres</Label>
+              <Field name="address" component={CustomField} type="text" />
+
+              <Label>Liczba pracowników</Label>
               <Field
-                name="name"
-                component="input"
+                name="employeesAmount"
+                component={CustomField}
                 type="text"
-                placeholder="company name"
-                validate={required}
               />
-            </div>
 
-            <button type="submit" disabled={submitting}>
-              Submit
-            </button>
-          </form>
-        )}
-      </Form>
+              <Label>Link do zdjęcia</Label>
+              <Field name="photoURL" component={CustomField} type="text" />
+
+              <Label>Opis firmy</Label>
+              <Field name="description" component={CustomField} type="text" />
+
+              <Button type="submit" disabled={submitting}>
+                Zarejestruj
+              </Button>
+            </FormWrapper>
+          )}
+        </Form>
+        <Link to="/signin">Masz już konto? Zaloguj się</Link>
+        <Link to="/">Wróć do strony głównej</Link>
+      </StyledWrapper>
     </Container>
   );
 };

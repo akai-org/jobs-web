@@ -10,6 +10,7 @@ import Container from "../../components/Container";
 import { Field as CustomField } from "../../components/Form";
 import Heading from "../../styled-components/Heading";
 import Button from "../../styled-components/Button";
+import { required } from "../../validators";
 
 const StyledWrapper = styled.section`
   align-items: center;
@@ -28,8 +29,6 @@ const SignInPage = ({ firebase, history }) => {
       .login(values.email, values.password)
       .then(() => history.push("/new-offer"))
       .catch(error => console.log(error));
-
-  const required = value => (value ? null : "Required");
 
   return (
     <Container>
@@ -59,6 +58,7 @@ const SignInPage = ({ firebase, history }) => {
             </FormWrapper>
           )}
         </Form>
+        <Link to="/signup">Nie posiadasz konta? Zarejestruj się</Link>
         <Link to="/">Wróć do strony głównej</Link>
       </StyledWrapper>
     </Container>

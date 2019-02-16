@@ -13,7 +13,7 @@ import {
 } from "../../components/Form";
 import Heading from "../../styled-components/Heading";
 import Button from "../../styled-components/Button";
-import { required } from "../../validators";
+import { composeValidator, required, regex } from "../../validators";
 
 const StyledWrapper = styled.section`
   align-items: center;
@@ -49,6 +49,14 @@ const SignUpPage = ({ firebase }) => {
       .then(result => console.log(result))
       .catch(error => console.log(error));
 
+  const validPassword = composeValidator(
+    required,
+    regex(
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z]{8,})$/,
+      "Hasło powinno zawierać 1 małą literę, 1 dużą literę, 1 cyfrę"
+    )
+  );
+
   return (
     <Container>
       <StyledWrapper>
@@ -69,7 +77,7 @@ const SignUpPage = ({ firebase }) => {
                 name="password"
                 component={CustomField}
                 type="password"
-                validate={required}
+                validate={validPassword}
               />
 
               <RequiredLabel>Powtórz hasło</RequiredLabel>
@@ -77,7 +85,7 @@ const SignUpPage = ({ firebase }) => {
                 name="confirmPassword"
                 component={CustomField}
                 type="password"
-                validate={required}
+                validate={validPassword}
               />
 
               <Label>Miasto</Label>

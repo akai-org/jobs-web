@@ -6,14 +6,19 @@ import styled from "styled-components";
 
 import { withFirebase } from "../../firebase";
 import Container from "../../components/Container";
-import {
-  Field as CustomField,
-  Label,
-  RequiredLabel
-} from "../../components/Form";
 import Heading from "../../styled-components/Heading";
 import Button from "../../styled-components/Button";
 import { composeValidator, required, regex } from "../../validators";
+
+import {
+  Field as CustomField,
+  TextAreaField,
+  Label,
+  RequiredLabel
+} from "../../components/Form";
+
+import EmployeesAmount from "../../consts/EmployeesAmount";
+import SelectField from "../../components/Form/SelectField";
 
 const StyledWrapper = styled.section`
   align-items: center;
@@ -97,15 +102,15 @@ const SignUpPage = ({ firebase }) => {
               <Label>Liczba pracowników</Label>
               <Field
                 name="employeesAmount"
-                component={CustomField}
-                type="text"
+                component={SelectField}
+                options={EmployeesAmount}
               />
 
               <Label>Link do zdjęcia</Label>
               <Field name="photoURL" component={CustomField} type="text" />
 
               <Label>Opis firmy</Label>
-              <Field name="description" component={CustomField} type="text" />
+              <Field name="description" component={TextAreaField} type="text" />
 
               <Button type="submit" disabled={submitting}>
                 Zarejestruj

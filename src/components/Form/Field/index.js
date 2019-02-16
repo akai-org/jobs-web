@@ -6,7 +6,7 @@ import Input from "../../../styled-components/Input";
 import ErrorStyledWrapper from "../../../styled-components/ErrorStyledWrapper";
 
 const InputWrapper = styled.div`
-  margin: 15px 0;
+  margin: 0 0 15px 0;
 `;
 
 const hasError = (error, touched) => error && touched;

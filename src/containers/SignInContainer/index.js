@@ -15,6 +15,12 @@ const StyledWrapper = styled.section`
   margin-top: 50px;
 `;
 
+const StyledLink = styled(Link)`
+  color: ${({ theme, isRegister }) =>
+    isRegister ? theme.color.text.base : theme.color.text.light};
+  margin-bottom: 10px;
+`;
+
 const SignInContainer = ({ firebase, history }) => {
   const onSubmitHandler = values =>
     firebase
@@ -26,8 +32,10 @@ const SignInContainer = ({ firebase, history }) => {
     <StyledWrapper>
       <Heading>Logowanie</Heading>
       <SignInForm onSubmitHandler={onSubmitHandler} />
-      <Link to="/signup">Nie posiadasz konta? Zarejestruj się</Link>
-      <Link to="/">Wróć do strony głównej</Link>
+      <StyledLink to="/signup" isRegister>
+        Nie posiadasz konta? Zarejestruj się
+      </StyledLink>
+      <StyledLink to="/">Wróć do strony głównej</StyledLink>
     </StyledWrapper>
   );
 };

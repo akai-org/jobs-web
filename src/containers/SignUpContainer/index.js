@@ -15,6 +15,12 @@ const StyledWrapper = styled.section`
   margin: 50px 0;
 `;
 
+const StyledLink = styled(Link)`
+  color: ${({ theme, isLogin }) =>
+    isLogin ? theme.color.text.base : theme.color.text.light};
+  margin-bottom: 10px;
+`;
+
 const SignUpContainer = ({ firebase }) => {
   const removeSensitiveData = company => {
     const newCompany = { ...company };
@@ -53,8 +59,10 @@ const SignUpContainer = ({ firebase }) => {
         onSubmitHandler={onSubmitHandler}
         validPassword={validPassword}
       />
-      <Link to="/signin">Masz już konto? Zaloguj się</Link>
-      <Link to="/">Wróć do strony głównej</Link>
+      <StyledLink to="/signin" isLogin>
+        Masz już konto? Zaloguj się
+      </StyledLink>
+      <StyledLink to="/">Wróć do strony głównej</StyledLink>
     </StyledWrapper>
   );
 };

@@ -180,14 +180,9 @@ const StyledInner = styled.span`
   `};
 `;
 
-const Navigation = props => {
+const Navigation = ({ onOverlayClick }) => {
   const [menuState, setMenuState] = useState(false);
-
-  const { onOverlayClick } = props;
-
-  const onLinkClick = () => {
-    setMenuState(false);
-  };
+  const onLinkClick = () => setMenuState(false);
 
   return (
     <Fragment>
@@ -225,7 +220,7 @@ Navigation.propTypes = {
   // isMenuOpened: PropTypes.bool.isRequired,
   // onLinkClick: PropTypes.func.isRequired,
   // onMobileMenuButtonClick: PropTypes.func.isRequired,
-  onOverlayClick: PropTypes.func.isRequired
+  onOverlayClick: PropTypes.func
 };
 
 export default Navigation;

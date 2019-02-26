@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 
-import { withFirebase, useAuthUser } from "../index";
+import { withFirebase, AuthUserContext } from "../index";
 
 const withAuthorization = condition => Component => {
   const WithAuthorization = props => {
-    const authUser = useAuthUser(null, props.firebase);
+    const authUser = useContext(AuthUserContext);
+
     useEffect(() => {
       if (!condition(authUser)) {
         props.history.push("/");
       }
     }, []);
 
-    return <Component {...props} />;
+    return <>{condition(authUser) && <Component {...props} />}</>;
   };
 
   return compose(

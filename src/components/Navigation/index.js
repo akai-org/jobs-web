@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import useAuthUser from "../../firebase/hooks/useAuthUser";
 import StyledCTA from "../StyledCTA";
 
 const StyledOverlay = styled.div`
@@ -226,7 +225,7 @@ Navigation.propTypes = {
   // isMenuOpened: PropTypes.bool.isRequired,
   // onLinkClick: PropTypes.func.isRequired,
   // onMobileMenuButtonClick: PropTypes.func.isRequired,
-  // onOverlayClick: PropTypes.func.isRequired
+  onOverlayClick: PropTypes.func.isRequired
 };
 
 export default Navigation;

@@ -2,14 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Column, ColumnContainer } from "../../styled-components/Columns";
+import HeadingSecondary from "../../styled-components/HeadingSecondary";
+
+import JobOfferSkill from "./JobOfferSkill";
 
 const JobOfferSkills = ({ skills }) => (
   <>
-    <h2>Wymagane umiejętności</h2>
+    <HeadingSecondary>Wymagane umiejętności</HeadingSecondary>
     <ColumnContainer>
-      {skills.map((skill, i) => (
+      {skills.map(({ name, stars }, i) => (
         <Column key={i}>
-          {skill.name} - {skill.stars}
+          <JobOfferSkill name={name} stars={stars} />
         </Column>
       ))}
     </ColumnContainer>

@@ -6,6 +6,7 @@ import Container from "../../components/Container";
 import JobOfferHeader from "../../components/JobOfferHeader";
 import JobOfferSkills from "../../components/JobOfferSkills";
 import { ColumnContainer, Column } from "../../styled-components/Columns";
+import HeadingSecondary from "../../styled-components/HeadingSecondary";
 
 const OfferPage = ({ match }) => {
   const [offer, setOffer] = useState(false);
@@ -36,7 +37,7 @@ const OfferPage = ({ match }) => {
       <JobOfferSkills skills={offer.skills} />
       <ColumnContainer>
         <Column>
-          <h2>Technologie</h2>
+          <HeadingSecondary>Technologie</HeadingSecondary>
           <ul>
             {offer.technologies.map((technology, i) => (
               <li key={i}>{technology.name}</li>
@@ -44,14 +45,14 @@ const OfferPage = ({ match }) => {
           </ul>
         </Column>
         <Column>
-          <h2>{offer.description.title}</h2>
+          <HeadingSecondary>{offer.description.title}</HeadingSecondary>
           <p>{offer.description.text}</p>
         </Column>
       </ColumnContainer>
 
       {company ? (
         <div>
-          <h2>O firmie</h2>
+          <HeadingSecondary>O firmie</HeadingSecondary>
           <p>{company.description}</p>
         </div>
       ) : (

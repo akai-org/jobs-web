@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledWrapper = styled.div`
-  color: green;
+  color: ${({ theme }) => theme.color.text.money};
   margin: 0 10px 0 0;
 
   ${({ theme }) => theme.media.mobile`

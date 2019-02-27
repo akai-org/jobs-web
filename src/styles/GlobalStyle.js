@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Lato", sans-serif;
     font-size: ${props => props.theme.font.size.base};
+    color: ${props => props.theme.color.text.base};
   }
 
   img {
@@ -15,10 +16,22 @@ const GlobalStyle = createGlobalStyle`
     display: block;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    color: ${props => props.theme.color.text.primary};
+  }
+
+  h2 {
+    font-size: ${props => props.theme.font.size.heading.secondary};
+  }
+
   p {
     color: ${props => props.theme.color.text.base};
     line-height: ${props => props.theme.font.lineHeight.paragraph};
     margin: 1em 0 1.5em;
+  }
+  
+  li {
+    line-height: ${props => props.theme.font.lineHeight.paragraph};
   }
 `;
 

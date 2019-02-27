@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Container from "../../components/Container";
+import JobOfferHeader from "../../components/JobOfferHeader";
+import JobOfferSkills from "../../components/JobOfferSkills";
+import { ColumnContainer, Column } from "../../styled-components/Columns";
 
 const OfferPage = ({ match }) => {
   const [offer, setOffer] = useState(false);
@@ -12,7 +15,6 @@ const OfferPage = ({ match }) => {
     fetch(`/offer/${match.params.id}.json`)
       .then(data => data.json())
       .then(data => {
-        console.log(data);
         setOffer(data);
         fetch(`/company/${data.company.toLowerCase()}.json`)
           .then(response => response.json())
@@ -30,33 +32,27 @@ const OfferPage = ({ match }) => {
   return (
     <Container>
       <Link to="/offers">Wróć do listy ofert</Link>
-      <img src={offer.image} alt={`Logo ${offer.company}`} />
-      <h2>{offer.name}</h2>
-      <p>{`${offer.salary.min} - ${offer.salary.max}`}</p>
-
-      <h3>Wymagane umiejętności</h3>
-      <ul>
-        {offer.skills.map((skill, i) => (
-          <li key={i}>
-            {skill.name} - {skill.stars}
-          </li>
-        ))}
-      </ul>
-
-      <h3>Technologie</h3>
-      <ul>
-        {offer.technologies.map((technology, i) => (
-          <li key={i}>{technology.name}</li>
-        ))}
-      </ul>
-
-      <h3>{offer.description.title}</h3>
-      {offer.description.text}
+      <JobOfferHeader offer={offer} />
+      <JobOfferSkills skills={offer.skills} />
+      <ColumnContainer>
+        <Column>
+          <h2>Technologie</h2>
+          <ul>
+            {offer.technologies.map((technology, i) => (
+              <li key={i}>{technology.name}</li>
+            ))}
+          </ul>
+        </Column>
+        <Column>
+          <h2>{offer.description.title}</h2>
+          <p>{offer.description.text}</p>
+        </Column>
+      </ColumnContainer>
 
       {company ? (
         <div>
-          <h3>O firmie</h3>
-          {company.description}
+          <h2>O firmie</h2>
+          <p>{company.description}</p>
         </div>
       ) : (
         ""

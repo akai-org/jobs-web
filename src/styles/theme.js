@@ -24,7 +24,8 @@ const theme = {
     },
     background: {
       base: "#fff",
-      light: "#f5f5f5"
+      light: "#f5f5f5",
+      dark: "#000"
     },
     text: {
       primary: "#222",

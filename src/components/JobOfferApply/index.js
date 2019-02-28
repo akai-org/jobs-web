@@ -6,8 +6,16 @@ import Box from "../../styled-components/Box";
 import LinkCTA from "../../styled-components/LinkCTA";
 
 const Date = styled.p`
+  margin-top: 0;
   color: ${({ theme }) => theme.color.text.primary};
   font-weight: 700;
+`;
+
+const ApplyLink = styled(LinkCTA)`
+  box-sizing: border-box;
+  max-width: none;
+  margin-top: 20px;
+  width: 100%;
 `;
 
 const JobOfferApply = ({
@@ -24,14 +32,14 @@ const JobOfferApply = ({
       {startDate ? Date(startDate).toLocaleDateString() : "od zaraz"}
     </Date>
     {link && (
-      <LinkCTA href={link} target="_blank" primary>
+      <ApplyLink href={link} target="_blank" primary>
         Aplikuj
-      </LinkCTA>
+      </ApplyLink>
     )}
     {website && (
-      <LinkCTA href={website} target="_blank">
+      <ApplyLink href={website} target="_blank">
         Strona pracodawcy
-      </LinkCTA>
+      </ApplyLink>
     )}
   </Box>
 );

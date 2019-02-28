@@ -14,6 +14,7 @@ import EmployeesAmount from "../../consts/EmployeesAmount";
 import SelectField from "../Form/SelectField";
 import Button from "../../styled-components/Button";
 import { withFirebase } from "../../firebase";
+import { composeValidator, required } from "../../validators";
 
 const FormWrapper = styled.form`
   width: 320px;
@@ -37,7 +38,7 @@ const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
             name="email"
             component={CustomField}
             type="email"
-            validate={isEmailTakenValidator}
+            validate={composeValidator(required, isEmailTakenValidator)}
           />
 
           <RequiredLabel>Hasło</RequiredLabel>

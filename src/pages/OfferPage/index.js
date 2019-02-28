@@ -6,6 +6,7 @@ import Container from "../../components/Container";
 import JobOfferHeader from "../../components/JobOfferHeader";
 import JobOfferSkills from "../../components/JobOfferSkills";
 import { ColumnContainer, Column } from "../../styled-components/Columns";
+import BackButton from "../../styled-components/BackButton";
 import HeadingSecondary from "../../styled-components/HeadingSecondary";
 
 const OfferPage = ({ match }) => {
@@ -32,7 +33,9 @@ const OfferPage = ({ match }) => {
 
   return (
     <Container>
-      <Link to="/offers">Wróć do listy ofert</Link>
+      <BackButton as={Link} to="/offers">
+        Wróć do listy ofert
+      </BackButton>
       <JobOfferHeader offer={offer} />
       <JobOfferSkills skills={offer.skills} />
       <ColumnContainer>

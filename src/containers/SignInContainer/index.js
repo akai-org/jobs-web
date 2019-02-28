@@ -26,7 +26,7 @@ const SignInContainer = ({ firebase, history }) => {
     firebase
       .login(values.email, values.password)
       .then(() => history.push("/new-offer"))
-      .catch(error => console.log(error));
+      .catch(error => console.log(error) || alert(error.message));
 
   return (
     <StyledWrapper>

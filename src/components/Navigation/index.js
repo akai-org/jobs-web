@@ -200,7 +200,7 @@ const Navigation = ({ onOverlayClick }) => {
               </StyledLink>
             </li>
           </StyledList>
-          <StyledCTA to="/" onClick={onLinkClick}>
+          <StyledCTA to="/new-offer" onClick={onLinkClick}>
             Dodaj ofertę
           </StyledCTA>
           <StyledCTA to="/signin" onClick={onLinkClick}>

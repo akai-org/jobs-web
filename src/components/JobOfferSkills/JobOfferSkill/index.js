@@ -90,7 +90,7 @@ const mapStarsToString = stars => {
 };
 
 const JobOfferSkill = ({ name, stars }) => (
-  <BoxWithMargin>
+  <BoxWithMargin center>
     <Name>{name}</Name>
     <SkillWrapper>
       <Skill>

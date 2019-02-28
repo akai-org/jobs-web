@@ -1,9 +1,10 @@
 import React from "react";
 
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Heading from "../../styled-components/Heading";
-import StyledCTA from "../../components/StyledCTA";
+import LinkCTA from "../../styled-components/LinkCTA";
 import { Column, ColumnContainer } from "../../styled-components/Columns";
 import artwork from "../../assets/images/artwork.png";
 
@@ -36,9 +37,9 @@ export default () => (
         najlepszego punktu startowego na ścieżce kariery. Odkryj wymarzoną
         pierwszą pracę i zdobądź pierwsze doświadczenia w świecie IT.
       </p>
-      <StyledCTA primary to="/offers">
+      <LinkCTA as={Link} primary to="/offers">
         Przeglądaj oferty
-      </StyledCTA>
+      </LinkCTA>
     </Column>
     <Column>
       <Image src={artwork} />

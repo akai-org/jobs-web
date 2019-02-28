@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-import StyledCTA from "../StyledCTA";
+import LinkCTA from "../../styled-components/LinkCTA";
 
 const StyledOverlay = styled.div`
   background: ${({ theme }) => theme.color.background.darker};
@@ -201,12 +201,12 @@ const Navigation = () => {
               </StyledLink>
             </li>
           </StyledList>
-          <StyledCTA to="/new-offer" onClick={onLinkClick}>
-            Dodaj ofertę
-          </StyledCTA>
-          <StyledCTA to="/signin" onClick={onLinkClick}>
+          <LinkCTA as={Link} to="/signin" onClick={onLinkClick}>
             Sign in
-          </StyledCTA>
+          </LinkCTA>
+          <LinkCTA as={Link} to="/new-offer" onClick={onLinkClick} secondary>
+            Dodaj ofertę
+          </LinkCTA>
         </StyledWrapper>
       </StyledNav>
       <StyledButton onClick={() => setMenuState(!menuState)}>

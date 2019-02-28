@@ -26,7 +26,7 @@ const Sallary = styled.p`
 const StyledWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 40px 0;
+  margin: 30px 0;
 `;
 
 const ImageContainer = styled.div`

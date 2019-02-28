@@ -14,7 +14,7 @@ const ListingPage = () => {
   }, []);
 
   return (
-    <Container>
+    <Container padded>
       <JobListingPage>
         {offers.map(offer => (
           <JobListingItem key={offer.id} offer={offer} />

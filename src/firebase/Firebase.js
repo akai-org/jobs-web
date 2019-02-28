@@ -1,6 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import "firebase/functions";
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -16,6 +17,7 @@ class Firebase {
     app.initializeApp(config);
     this.auth = app.auth();
     this.database = app.database();
+    this.functions = app.functions();
   }
 
   // API - Auth
@@ -30,6 +32,8 @@ class Firebase {
   // API - user/company
   createCompany = (userUUID, company) =>
     this.database.ref(`companies/${userUUID}`).set(company);
+
+  isEmailTaken = () => this.functions.httpsCallable("isEmailTaken");
 }
 
 export default Firebase;

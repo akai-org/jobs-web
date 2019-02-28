@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { compose } from "recompose";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 
 import SignUpForm from "../../components/SignUpForm";
 import Heading from "../../styled-components/Heading";
@@ -21,7 +23,7 @@ const StyledLink = styled(Link)`
   margin-bottom: 10px;
 `;
 
-const SignUpContainer = ({ firebase }) => {
+const SignUpContainer = ({ firebase, history }) => {
   const removeSensitiveData = company => {
     const newCompany = { ...company };
     delete newCompany.password;
@@ -37,11 +39,30 @@ const SignUpContainer = ({ firebase }) => {
     return firebase.createCompany(userUUID, newCompany);
   };
 
+  const createCompanySuccessHandler = result => {
+    console.log(result);
+    Swal.fire({
+      type: "success",
+      title: "",
+      html: `Konto zostało utworzone!<br /> Proszę poczekać na werywikację konta.`,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Ok",
+      focusConfirm: false,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: true
+    }).then(res => {
+      if (res.value) {
+        history.push("/");
+      }
+    });
+  };
+
   const onSubmitHandler = values =>
     firebase
       .registerUser(values.email, values.password)
       .then(result => createCompany(result.user.uid, values))
-      .then(result => console.log(result))
+      .then(createCompanySuccessHandler)
       .catch(error => console.log(error));
 
   const validPassword = composeValidator(
@@ -70,7 +91,11 @@ const SignUpContainer = ({ firebase }) => {
 SignUpContainer.displayName = "SignUpContainer";
 
 SignUpContainer.propTypes = {
-  firebase: PropTypes.object
+  firebase: PropTypes.object,
+  history: PropTypes.object
 };
 
-export default withFirebase(SignUpContainer);
+export default compose(
+  withFirebase,
+  withRouter
+)(SignUpContainer);

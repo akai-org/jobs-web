@@ -13,13 +13,22 @@ import {
 import EmployeesAmount from "../../consts/EmployeesAmount";
 import SelectField from "../Form/SelectField";
 import Button from "../../styled-components/Button";
-import { required } from "../../validators";
+import { withFirebase } from "../../firebase";
 
 const FormWrapper = styled.form`
   width: 320px;
 `;
 
-const SignUpForm = ({ onSubmitHandler, validPassword }) => (
+const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
+  const isEmailTaken = firebase.isEmailTaken();
+  const isEmailTakenValidator = async value => {
+    const response = await isEmailTaken({ email: value }).then(
+      result => result.data
+    );
+    return response ? "Email jest już zarejestrowany" : null;
+  };
+
+  return (
     <Form onSubmit={onSubmitHandler}>
       {({ handleSubmit, submitting }) => (
         <FormWrapper onSubmit={handleSubmit}>
@@ -28,7 +37,7 @@ const SignUpForm = ({ onSubmitHandler, validPassword }) => (
             name="email"
             component={CustomField}
             type="email"
-            validate={required}
+            validate={isEmailTakenValidator}
           />
 
           <RequiredLabel>Hasło</RequiredLabel>
@@ -73,12 +82,14 @@ const SignUpForm = ({ onSubmitHandler, validPassword }) => (
       )}
     </Form>
   );
+};
 
 SignUpForm.displayName = "SignUpForm";
 
 SignUpForm.propTypes = {
   onSubmitHandler: PropTypes.func,
-  validPassword: PropTypes.func
+  validPassword: PropTypes.func,
+  firebase: PropTypes.object
 };
 
-export default SignUpForm;
+export default withFirebase(SignUpForm);

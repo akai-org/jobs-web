@@ -25,7 +25,8 @@ const theme = {
     background: {
       base: "#fff",
       light: "#f5f5f5",
-      dark: "#000"
+      dark: "#444",
+      darker: "#000"
     },
     text: {
       primary: "#222",
@@ -40,7 +41,8 @@ const theme = {
       line: "#eee",
       menu: "#666",
       dropdown: "#222",
-      tickmark: "#3ccb3c"
+      tickmark: "#3ccb3c",
+      indicator: "#f42e4f"
     }
   },
   font: {
@@ -76,6 +78,7 @@ const theme = {
       base: "2px",
       thin: "1px"
     },
+    borderRadius: "4px",
     img: {
       thumbnail: {
         width: "64px",

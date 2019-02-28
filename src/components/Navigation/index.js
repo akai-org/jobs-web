@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import StyledCTA from "../StyledCTA";
 
 const StyledOverlay = styled.div`
-  background: ${({ theme }) => theme.color.background.dark};
+  background: ${({ theme }) => theme.color.background.darker};
   position: fixed;
   top: 0;
   left: 0;

@@ -7,7 +7,7 @@ const StyledWrapper = styled.div`
   margin: 0 10px 0 0;
 
   ${({ theme }) => theme.media.mobile`
-    font-size: 12px;
+    font-size: ${theme.font.size.label.tertiary};
   `}
 `;
 

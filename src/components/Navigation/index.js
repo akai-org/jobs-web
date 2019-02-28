@@ -1,31 +1,31 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 import StyledCTA from "../StyledCTA";
 
 const StyledOverlay = styled.div`
-  display: none;
+  background: ${({ theme }) => theme.color.background.darker};
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0;
+  transition: opacity ${({ theme }) => theme.effects.transition.base},
+    visibility ${({ theme }) => theme.effects.transition.none} 0.4s;
+  visibility: hidden;
+  z-index: 100;
 
-  ${({ theme }) => theme.media.tablet`
-    background: rgba(0, 0, 0, 0.2);
-    position: fixed;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    z-index: 100;
-    transition: opacity ${props => props.theme.effects.transition.slow};
-
-    ${props =>
-      props.isMenuOpened &&
-      `
-      opacity: 1;
-    `}
-  `};
+  ${({ isVisible }) =>
+    isVisible &&
+    css`
+      opacity: 0.2;
+      visibility: visible;
+      transition: opacity ${({ theme }) => theme.effects.transition.base},
+        visibility ${({ theme }) => theme.effects.transition.none} 0s;
+    `};
 `;
 
 const StyledNav = styled.nav`
@@ -88,7 +88,7 @@ const StyledList = styled.ul`
 
 const StyledLink = styled(Link)`
   display: inline-block;
-  font-weight: bold;
+  font-weight: 700;
   margin-right: 3rem;
   text-decoration: none;
   color: ${props => props.theme.color.text.primary};
@@ -180,9 +180,10 @@ const StyledInner = styled.span`
   `};
 `;
 
-const Navigation = ({ onOverlayClick }) => {
+const Navigation = () => {
   const [menuState, setMenuState] = useState(false);
   const onLinkClick = () => setMenuState(false);
+  const onOverlayClick = () => setMenuState(false);
 
   return (
     <Fragment>
@@ -211,7 +212,7 @@ const Navigation = ({ onOverlayClick }) => {
       <StyledButton onClick={() => setMenuState(!menuState)}>
         <StyledInner isMenuOpened={menuState} />
       </StyledButton>
-      <StyledOverlay isMenuOpened={menuState} onClick={onOverlayClick} />
+      <StyledOverlay isVisible={menuState} onClick={onOverlayClick} />
     </Fragment>
   );
 };

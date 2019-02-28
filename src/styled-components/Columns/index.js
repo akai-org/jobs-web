@@ -6,11 +6,11 @@ export const ColumnContainer = styled.div`
 
   ${({ theme }) => theme.media.tablet`
     flex-wrap: wrap;
-    margin: -20px;
+    margin: 0 -20px;
   `}
 
   ${({ theme }) => theme.media.mobile`
-    margin: -20px 0;
+    margin: 0;
   `};
 `;
 
@@ -21,10 +21,10 @@ export const Column = styled.div`
   ${({ theme }) => theme.media.tablet`
     flex: initial;
     flex-basis: 100%;
-    padding: 20px;
+    padding: 0 20px;
   `}
 
   ${({ theme }) => theme.media.mobile`
-    padding: 20px 0;
+    padding: 0;
   `};
 `;

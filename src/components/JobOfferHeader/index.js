@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Heading from "../../styled-components/Heading";
+import Salary from "./Salary";
 import formatSallaryToString from "../../utils/formatSallaryToString";
 
 const OfferHeading = styled(Heading)`
@@ -13,11 +14,7 @@ const OfferHeading = styled(Heading)`
   `}
 `;
 
-const Sallary = styled.p`
-  color: ${({ theme }) => theme.color.text.money};
-  font-size: ${({ theme }) => theme.font.size.heading.secondary};
-  margin: 0;
-
+const HeaderSalary = styled(Salary)`
   ${({ theme }) => theme.media.mobile`
     font-size: ${theme.font.size.heading.tertiary};
   `}
@@ -48,7 +45,7 @@ const JobOfferHeader = ({
     </ImageContainer>
     <div>
       <OfferHeading>{name}</OfferHeading>
-      <Sallary>{formatSallaryToString(min, max)}</Sallary>
+      <HeaderSalary>{formatSallaryToString(min, max)}</HeaderSalary>
     </div>
   </StyledWrapper>
 );

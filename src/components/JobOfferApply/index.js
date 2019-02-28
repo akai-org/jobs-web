@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import Box from "../../styled-components/Box";
 import LinkCTA from "../../styled-components/LinkCTA";
+import Salary from "../JobOfferHeader/Salary";
+import formatSallaryToString from "../../utils/formatSallaryToString";
 
 const Date = styled.p`
   margin-top: 0;
@@ -27,6 +29,7 @@ const JobOfferApply = ({
   company: { website }
 }) => (
   <Box>
+    <Salary>{formatSallaryToString(min, max)}</Salary>
     <Date>
       Czas rozpoczęcia:{" "}
       {startDate ? Date(startDate).toLocaleDateString() : "od zaraz"}

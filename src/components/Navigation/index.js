@@ -180,14 +180,9 @@ const StyledInner = styled.span`
   `};
 `;
 
-const Navigation = props => {
+const Navigation = ({ onOverlayClick }) => {
   const [menuState, setMenuState] = useState(false);
-
-  const { onOverlayClick } = props;
-
-  const onLinkClick = () => {
-    setMenuState(false);
-  };
+  const onLinkClick = () => setMenuState(false);
 
   return (
     <Fragment>
@@ -205,8 +200,11 @@ const Navigation = props => {
               </StyledLink>
             </li>
           </StyledList>
-          <StyledCTA to="/" onClick={onLinkClick}>
+          <StyledCTA to="/new-offer" onClick={onLinkClick}>
             Dodaj ofertę
+          </StyledCTA>
+          <StyledCTA to="/signin" onClick={onLinkClick}>
+            Sign in
           </StyledCTA>
         </StyledWrapper>
       </StyledNav>
@@ -219,10 +217,10 @@ const Navigation = props => {
 };
 
 Navigation.propTypes = {
-  isMenuOpened: PropTypes.bool.isRequired,
-  onLinkClick: PropTypes.func.isRequired,
-  onMobileMenuButtonClick: PropTypes.func.isRequired,
-  onOverlayClick: PropTypes.func.isRequired
+  // isMenuOpened: PropTypes.bool.isRequired,
+  // onLinkClick: PropTypes.func.isRequired,
+  // onMobileMenuButtonClick: PropTypes.func.isRequired,
+  onOverlayClick: PropTypes.func
 };
 
 export default Navigation;

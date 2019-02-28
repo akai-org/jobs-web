@@ -1,26 +1,37 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+
+import { withAuthentication } from "./firebase";
 import theme from "./styles/theme";
-import HomePage from "./pages/HomePage/index";
-import AboutPage from "./pages/AboutPage/index";
-import ContactPage from "./pages/ContactPage/index";
 import Layout from "./components/Layout";
-import ListingPage from "./pages/ListingPage";
-import OfferPage from "./pages/OfferPage";
+
+const HomePage = lazy(() => import("./pages/HomePage/index"));
+const AboutPage = lazy(() => import("./pages/AboutPage/index"));
+const ContactPage = lazy(() => import("./pages/ContactPage/index"));
+const ListingPage = lazy(() => import("./pages/ListingPage"));
+const OfferPage = lazy(() => import("./pages/OfferPage"));
+const SignInPage = lazy(() => import("./pages/SignInPage"));
+const AddOfferPage = lazy(() => import("./pages/AddOfferPage"));
+const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <Router>
       <Layout>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/about" component={AboutPage} />
-        <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/offers" component={ListingPage} />
-        <Route path="/offer/:id" component={OfferPage} />
+        <Suspense fallback={""}>
+          <Route exact path="/" render={() => <HomePage />} />
+          <Route exact path="/about" render={() => <AboutPage />} />
+          <Route exact path="/contact" render={() => <ContactPage />} />
+          <Route exact path="/offers" render={() => <ListingPage />} />
+          <Route exact path="/new-offer" render={() => <AddOfferPage />} />
+          <Route path="/offer/:id" render={() => <OfferPage />} />
+          <Route exact path="/signin" render={() => <SignInPage />} />
+          <Route exact path="/signup" render={() => <SignUpPage />} />
+        </Suspense>
       </Layout>
     </Router>
   </ThemeProvider>
 );
 
-export default App;
+export default withAuthentication(App);

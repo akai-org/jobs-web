@@ -88,7 +88,7 @@ const StyledList = styled.ul`
 
 const StyledLink = styled(Link)`
   display: inline-block;
-  font-weight: bold;
+  font-weight: 700;
   margin-right: 3rem;
   text-decoration: none;
   color: ${props => props.theme.color.text.primary};

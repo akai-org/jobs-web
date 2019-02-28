@@ -12,9 +12,9 @@ const BoxWithMargin = styled(Box)`
 
 const Name = styled.span`
   color: ${({ theme }) => theme.color.text.primary};
-  font-weight: bold;
+  font-weight: 700;
 `;
-  
+
 const Skill = styled.ul`
   list-style-type: none;
   padding: 0;
@@ -28,11 +28,14 @@ const Indicator = styled.li`
   width: 12px;
   border-radius: 50%;
   margin: 0 3px;
-  border: ${({ theme }) => theme.size.border.base} solid ${({ theme }) => theme.color.elements.indicator};
+  border: ${({ theme }) => theme.size.border.base} solid
+    ${({ theme }) => theme.color.elements.indicator};
 
-  ${({ theme, isActive }) => isActive && css`
-    background: ${theme.color.elements.indicator};
-  `}
+  ${({ theme, isActive }) =>
+    isActive &&
+    css`
+      background: ${theme.color.elements.indicator};
+    `}
 `;
 
 const Label = styled.div`
@@ -79,12 +82,12 @@ const mapStarsToString = stars => {
     "",
     "Podstawowa znajomość",
     "Dobra znajomość",
-    "Bardzo dobra znajomość",
+    "Bardzo dobra znajomość"
   ];
 
   if (stars >= levels.length) return "";
   return levels[stars];
-}
+};
 
 const JobOfferSkill = ({ name, stars }) => (
   <BoxWithMargin>
@@ -102,7 +105,7 @@ const JobOfferSkill = ({ name, stars }) => (
 
 JobOfferSkill.propTypes = {
   name: PropTypes.string.isRequired,
-  stars: PropTypes.number.isRequired,
-}
+  stars: PropTypes.number.isRequired
+};
 
 export default JobOfferSkill;

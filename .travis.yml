@@ -9,10 +9,8 @@ script:
 deploy:
   project: ./build/
   provider: firebase
+  skip_cleanup: true
   token:
     secure: "d0JkPI0iRqpriBdLRwk9VQZbbjzEnk3v2cnUzfkI0eg6filJScWc3PTi+IPTNf4vc68qml0+E8GlY13S/akC/3eU0VsR+deQ/xHueXSYMReucmWpaSuMpCG6BmsiuV95rTe1VJVTjP1kgETnj9vcRGb9IfEmDAw5YgmUxJRd4h8GEEr1NgAmcmjkCWBTgOeXeWz1rZ01WkP+jXWg6scmT//dTt4BAAnjbttda+hGTFlPPLCCFLl2z9dr7LrPg0A8It0BAzh0wRZS/BDMESQgGrETdSry5Sn93hiTIErP9+FqtPbGJDg65oD2ircHNPSp423PstM5yUyvWCEac/ojvpO+vv1v2ln+ugS1Dj1Ok5eWOqnGMmBgos+2RSgjOPx6S3amKr43TMV3S60Ql0i9CgY9AQ7BOYtT4SCpnMhplcTvnsPrQV7mvO0nvk9M2LuvlpyOtlGziVJnUiMUJH6FFgHYyhrL2inqRAiz17VxC6/MBPAAxc8ObaTIhPx1ar/vuSk9DyojNPQX1LPjF2ZH+ukqIStlHzPY1rxTZBKZpD3+HKMCaooKwHH5wpvdodaVde4pl80KR1Duyzj1kIhOyGnlZ97SPFFdEehID3pa4Rx79pzr0ZmMgWJKezqvwPc99Iqox9mA3fQ9YSlMyjxK8b5vPWQ117coZbKiX9Kc5p8="
   on:
-    repo: akai-org/jobs-web
-    branches:
-      only:
-        - develop
+    branch: develop

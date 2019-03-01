@@ -4,7 +4,7 @@ const Base = css`
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
-  border: none;
+  border: 0;
   font-family: ${({ theme }) => theme.font.family.base};
   font-weight: 400;
   border-radius: 100px;

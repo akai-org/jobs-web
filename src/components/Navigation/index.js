@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-import StyledCTA from "../StyledCTA";
+import { SecondaryButton, Button } from "../../styled-components/Buttons";
 
 const StyledOverlay = styled.div`
   background: ${({ theme }) => theme.color.background.darker};
@@ -180,6 +180,10 @@ const StyledInner = styled.span`
   `};
 `;
 
+const ButtonMargin = styled(Button)`
+  margin-right: 20px;
+`;
+
 const Navigation = () => {
   const [menuState, setMenuState] = useState(false);
   const onLinkClick = () => setMenuState(false);
@@ -197,16 +201,21 @@ const Navigation = () => {
             </li>
             <li>
               <StyledLink to="/contact" onClick={onLinkClick}>
-                Contact
+                Kontakt
               </StyledLink>
             </li>
           </StyledList>
-          <StyledCTA to="/new-offer" onClick={onLinkClick}>
+          <ButtonMargin as={Link} to="/signin" onClick={onLinkClick}>
+            Zaloguj się
+          </ButtonMargin>
+          <SecondaryButton
+            as={Link}
+            to="/new-offer"
+            onClick={onLinkClick}
+            secondary
+          >
             Dodaj ofertę
-          </StyledCTA>
-          <StyledCTA to="/signin" onClick={onLinkClick}>
-            Sign in
-          </StyledCTA>
+          </SecondaryButton>
         </StyledWrapper>
       </StyledNav>
       <StyledButton onClick={() => setMenuState(!menuState)}>

@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+
+import { withFirebase } from "../../firebase";
 
 import Container from "../../components/Container";
 import JobListingItem from "../../components/JobListingItem";
 import JobListingPage from "../../styled-components/JobListingPage";
 
-const ListingPage = () => {
+const ListingPage = ({ firebase }) => {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
-    fetch("/data.json")
-      .then(data => data.json())
-      .then(data => setOffers(data));
+    firebase.database
+      .ref("offers")
+      .once("value", snapshot => setOffers(Object.values(snapshot.val())));
   }, []);
 
   return (
@@ -24,4 +27,8 @@ const ListingPage = () => {
   );
 };
 
-export default ListingPage;
+ListingPage.propTypes = {
+  firebase: PropTypes.shape
+};
+
+export default withFirebase(ListingPage);

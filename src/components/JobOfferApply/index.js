@@ -3,21 +3,18 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Box from "../../styled-components/Box";
-import LinkCTA from "../../styled-components/LinkCTA";
+import { PrimaryButton, Button } from "../../styled-components/Buttons";
 import Salary from "../JobOfferHeader/Salary";
 import formatSallaryToString from "../../utils/formatSallaryToString";
 
 const Date = styled.p`
-  margin-top: 0;
+  margin: 0 0 50px;
   color: ${({ theme }) => theme.color.text.primary};
   font-weight: 700;
 `;
 
-const ApplyLink = styled(LinkCTA)`
-  box-sizing: border-box;
-  max-width: none;
-  margin-top: 20px;
-  width: 100%;
+const PrimaryButtonMargin = styled(PrimaryButton)`
+  margin-bottom: 20px;
 `;
 
 const JobOfferApply = ({
@@ -35,14 +32,14 @@ const JobOfferApply = ({
       {startDate ? Date(startDate).toLocaleDateString() : "od zaraz"}
     </Date>
     {link && (
-      <ApplyLink href={link} target="_blank" primary>
+      <PrimaryButtonMargin href={link} target="_blank" primary fullWidth>
         Aplikuj
-      </ApplyLink>
+      </PrimaryButtonMargin>
     )}
     {website && (
-      <ApplyLink href={website} target="_blank">
+      <Button href={website} target="_blank" fullWidth>
         Strona pracodawcy
-      </ApplyLink>
+      </Button>
     )}
   </Box>
 );

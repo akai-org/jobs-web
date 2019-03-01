@@ -43,7 +43,7 @@ const OfferPage = ({ match }) => {
     <Container padded>
       <ColumnContainer>
         <MainColumn>
-          <BackButton as={Link} to="/offers">
+          <BackButton as={Link} to="/offers" small>
             Wróć do listy ofert
           </BackButton>
           <JobOfferHeader offer={offer} />

@@ -12,12 +12,16 @@ import {
 
 import EmployeesAmount from "../../consts/EmployeesAmount";
 import SelectField from "../Form/SelectField";
-import Button from "../../styled-components/Button";
+import { PrimaryButton } from "../../styled-components/Buttons";
 import { withFirebase } from "../../firebase";
 import { composeValidator, required } from "../../validators";
 
 const FormWrapper = styled.form`
   width: 320px;
+`;
+
+const ButtonMargin = styled(PrimaryButton)`
+  margin-bottom: 20px;
 `;
 
 const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
@@ -76,9 +80,14 @@ const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
           <Label>Opis firmy</Label>
           <Field name="description" component={TextAreaField} type="text" />
 
-          <Button type="submit" disabled={submitting}>
+          <ButtonMargin
+            fullWidth
+            as="button"
+            type="submit"
+            disabled={submitting}
+          >
             Zarejestruj
-          </Button>
+          </ButtonMargin>
         </FormWrapper>
       )}
     </Form>

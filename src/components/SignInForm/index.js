@@ -3,12 +3,16 @@ import PropTypes from "prop-types";
 import { Form, Field } from "react-final-form";
 import styled from "styled-components";
 
-import Button from "../../styled-components/Button";
+import { PrimaryButton } from "../../styled-components/Buttons";
 import { required } from "../../validators";
 import { Field as CustomField } from "../Form";
 
 const FormWrapper = styled.form`
   width: 320px;
+`;
+
+const ButtonMargin = styled(PrimaryButton)`
+  margin-bottom: 20px;
 `;
 
 const SignInForm = ({ onSubmitHandler }) => (
@@ -30,9 +34,9 @@ const SignInForm = ({ onSubmitHandler }) => (
           placeholder="Hasło"
           validate={required}
         />
-        <Button type="submit" disabled={submitting}>
+        <ButtonMargin fullWidth as="button" type="submit" disabled={submitting}>
           Zaloguj
-        </Button>
+        </ButtonMargin>
       </FormWrapper>
     )}
   </Form>

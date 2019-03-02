@@ -39,7 +39,7 @@ const StyledNav = styled.nav`
     width: 100%;
     top: 0;
     left: 0;
-    padding: 10rem 2rem 4rem;
+    padding: 8rem 2rem 4rem;
     transform: translateY(-100%);
     z-index: 200;
     transition: transform ${props => props.theme.effects.transition.base} 0.2s;
@@ -194,6 +194,11 @@ const Navigation = () => {
       <StyledNav isMenuOpened={menuState}>
         <StyledWrapper isMenuOpened={menuState}>
           <StyledList>
+            <li>
+              <StyledLink to="/offers" onClick={onLinkClick}>
+                Oferty
+              </StyledLink>
+            </li>
             <li>
               <StyledLink to="/about" onClick={onLinkClick}>
                 O nas

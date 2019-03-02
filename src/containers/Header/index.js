@@ -22,7 +22,7 @@ const StyledContent = styled.div`
 `;
 
 const StyledLogo = styled.img`
-  width: 80px;
+  width: 120px;
   position: relative;
   z-index: 300;
 `;

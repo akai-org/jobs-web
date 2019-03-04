@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
+import { compose } from "recompose";
+
+import { withFirebase } from "../../firebase";
 
 import Container from "../../components/Container";
 import JobOfferHeader from "../../components/JobOfferHeader";
@@ -15,21 +18,29 @@ import {
 import BackButton from "../../styled-components/BackButton";
 import HeadingSecondary from "../../styled-components/HeadingSecondary";
 
-const OfferPage = ({ match }) => {
+const OfferPage = ({ match, firebase }) => {
   const [offer, setOffer] = useState(false);
   const [company, setCompany] = useState(false);
 
   useEffect(() => {
-    fetch(`/offer/${match.params.id}.json`)
-      .then(data => data.json())
-      .then(data => {
-        setOffer(data);
-        fetch(`/company/${data.company.toLowerCase()}.json`)
-          .then(response => response.json())
-          .then(c => setCompany(c));
-      })
-      .catch(() => {
-        // window.location.pathname = "/";
+    firebase.firestore
+      .collection("offer")
+      .doc(match.params.id)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          setOffer({ id: doc.id, ...doc.data() });
+
+          firebase.firestore
+            .collection("company")
+            .where("name", "==", doc.data().company)
+            .get()
+            .then(query => {
+              query.forEach(doc2 => {
+                setCompany({ id: doc2.id, ...doc2.data() });
+              });
+            });
+        }
       });
   }, []);
 
@@ -81,7 +92,11 @@ const OfferPage = ({ match }) => {
 };
 
 OfferPage.propTypes = {
-  match: PropTypes.shape.isRequired
+  match: PropTypes.shape.isRequired,
+  firebase: PropTypes.shape.isRequired
 };
 
-export default withRouter(OfferPage);
+export default compose(
+  withFirebase,
+  withRouter
+)(OfferPage);

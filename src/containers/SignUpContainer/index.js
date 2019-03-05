@@ -24,21 +24,6 @@ const StyledLink = styled(Link)`
 `;
 
 const SignUpContainer = ({ firebase, history }) => {
-  const removeSensitiveData = company => {
-    const newCompany = { ...company };
-    delete newCompany.password;
-    delete newCompany.confirmPassword;
-    return newCompany;
-  };
-
-  const createCompany = (userUUID, company) => {
-    const newCompany = {
-      ...removeSensitiveData(company),
-      userID: userUUID
-    };
-    return firebase.createCompany(userUUID, newCompany);
-  };
-
   const createCompanySuccessHandler = result => {
     console.log(result);
     Swal.fire({
@@ -58,10 +43,12 @@ const SignUpContainer = ({ firebase, history }) => {
     });
   };
 
+  const createRegisterUser = firebase.registerUser();
+
+  const registerUser = data => createRegisterUser({ user: data });
+
   const onSubmitHandler = values =>
-    firebase
-      .registerUser(values.email, values.password)
-      .then(result => createCompany(result.user.uid, values))
+    registerUser(values)
       .then(createCompanySuccessHandler)
       .catch(error => console.log(error));
 

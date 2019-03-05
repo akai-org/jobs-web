@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Form, Field } from "react-final-form";
 import styled from "styled-components";
+import { debounce } from "lodash";
 
 import {
   Field as CustomField,
@@ -26,12 +27,12 @@ const ButtonMargin = styled(PrimaryButton)`
 
 const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
   const isEmailTaken = firebase.isEmailTaken();
-  const isEmailTakenValidator = async value => {
+  const isEmailTakenValidator = debounce(async value => {
     const response = await isEmailTaken({ email: value }).then(
       result => result.data
     );
     return response ? "Email jest już zarejestrowany" : null;
-  };
+  }, 700);
 
   return (
     <Form onSubmit={onSubmitHandler}>

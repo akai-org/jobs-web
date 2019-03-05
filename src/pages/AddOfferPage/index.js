@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { compose } from "recompose";
 
 import { Form, Field } from "react-final-form";
 
 import { Field as CustomField } from "../../components/Form";
 
-import { withAuthUser } from "../../firebase";
+import { withAuthUser, withAuthorization } from "../../firebase";
 import Container from "../../components/Container";
 import { required } from "../../validators";
 
@@ -40,4 +41,9 @@ AddOfferPage.propTypes = {
   authUser: PropTypes.object
 };
 
-export default withAuthUser(AddOfferPage);
+const condition = authUser => authUser !== null;
+
+export default compose(
+  withAuthUser,
+  withAuthorization(condition)
+)(AddOfferPage);

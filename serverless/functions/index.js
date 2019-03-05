@@ -40,7 +40,7 @@ exports.registerUser = functions.https.onCall((data, context) => {
       email: email,
       emailVerified: true,
       password: password,
-      disabled: false
+      disabled: true
     })
     .then(result => createCompany(result.uid, data.user))
     .catch(error => console.error(error));

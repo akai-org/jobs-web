@@ -11,9 +11,14 @@ const ListingPage = ({ firebase }) => {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
-    firebase.database
-      .ref("offers")
-      .once("value", snapshot => setOffers(Object.values(snapshot.val())));
+    firebase.firestore
+      .collection("offer")
+      .get()
+      .then(querySnapshot => {
+        const docs = [];
+        querySnapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
+        setOffers(docs);
+      });
   }, []);
 
   return (

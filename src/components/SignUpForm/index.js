@@ -44,6 +44,7 @@ const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
             component={CustomField}
             type="email"
             validate={composeValidator(required, isEmailTakenValidator)}
+            validateFields={["email"]}
           />
 
           <RequiredLabel>Hasło</RequiredLabel>
@@ -52,6 +53,7 @@ const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
             component={CustomField}
             type="password"
             validate={validPassword}
+            validateFields={["password"]}
           />
 
           <RequiredLabel>Powtórz hasło</RequiredLabel>
@@ -60,6 +62,16 @@ const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
             component={CustomField}
             type="password"
             validate={validPassword}
+            validateFields={["confirmPassword"]}
+          />
+
+          <RequiredLabel>Nazwa firmy</RequiredLabel>
+          <Field
+            name="companyName"
+            component={CustomField}
+            type="text"
+            validate={required}
+            validateFields={["companyName"]}
           />
 
           <Label>Miasto</Label>

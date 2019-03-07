@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 import { SecondaryButton, Button } from "../../styled-components/Buttons";
+import { withFirebase, AuthUserContext } from "../../firebase";
 
 const StyledOverlay = styled.div`
   background: ${({ theme }) => theme.color.background.darker};
@@ -184,10 +185,13 @@ const ButtonMargin = styled(Button)`
   margin-right: 20px;
 `;
 
-const Navigation = () => {
+const Navigation = ({ firebase }) => {
+  const authUser = useContext(AuthUserContext);
   const [menuState, setMenuState] = useState(false);
+
   const onLinkClick = () => setMenuState(false);
   const onOverlayClick = () => setMenuState(false);
+  const logout = () => firebase.logout();
 
   return (
     <Fragment>
@@ -210,9 +214,15 @@ const Navigation = () => {
               </StyledLink>
             </li>
           </StyledList>
-          <ButtonMargin as={Link} to="/signin" onClick={onLinkClick}>
-            Zaloguj się
-          </ButtonMargin>
+          {authUser ? (
+            <ButtonMargin as={Link} to="/" onClick={logout}>
+              Wyloguj się
+            </ButtonMargin>
+          ) : (
+            <ButtonMargin as={Link} to="/signin" onClick={onLinkClick}>
+              Zaloguj się
+            </ButtonMargin>
+          )}
           <SecondaryButton
             as={Link}
             to="/new-offer"
@@ -232,10 +242,7 @@ const Navigation = () => {
 };
 
 Navigation.propTypes = {
-  // isMenuOpened: PropTypes.bool.isRequired,
-  // onLinkClick: PropTypes.func.isRequired,
-  // onMobileMenuButtonClick: PropTypes.func.isRequired,
-  onOverlayClick: PropTypes.func
+  firebase: PropTypes.object
 };
 
-export default Navigation;
+export default withFirebase(Navigation);

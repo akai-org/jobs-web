@@ -23,17 +23,12 @@ class Firebase {
   }
 
   // API - Auth
-  registerUser = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(email, password);
-
   login = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
   logout = () => this.auth.signOut();
 
-  // API - user/company
-  createCompany = (userUUID, company) =>
-    this.database.ref(`companies/${userUUID}`).set(company);
+  registerUser = () => this.functions.httpsCallable("registerUser");
 
   isEmailTaken = () => this.functions.httpsCallable("isEmailTaken");
 }

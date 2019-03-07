@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Form, Field } from "react-final-form";
 import styled from "styled-components";
+import { debounce } from "lodash";
 
 import {
   Field as CustomField,
@@ -26,12 +27,12 @@ const ButtonMargin = styled(PrimaryButton)`
 
 const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
   const isEmailTaken = firebase.isEmailTaken();
-  const isEmailTakenValidator = async value => {
+  const isEmailTakenValidator = debounce(async value => {
     const response = await isEmailTaken({ email: value }).then(
       result => result.data
     );
     return response ? "Email jest już zarejestrowany" : null;
-  };
+  }, 700);
 
   return (
     <Form onSubmit={onSubmitHandler}>
@@ -43,6 +44,7 @@ const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
             component={CustomField}
             type="email"
             validate={composeValidator(required, isEmailTakenValidator)}
+            validateFields={["email"]}
           />
 
           <RequiredLabel>Hasło</RequiredLabel>
@@ -51,6 +53,7 @@ const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
             component={CustomField}
             type="password"
             validate={validPassword}
+            validateFields={["password"]}
           />
 
           <RequiredLabel>Powtórz hasło</RequiredLabel>
@@ -59,6 +62,16 @@ const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {
             component={CustomField}
             type="password"
             validate={validPassword}
+            validateFields={["confirmPassword"]}
+          />
+
+          <RequiredLabel>Nazwa firmy</RequiredLabel>
+          <Field
+            name="companyName"
+            component={CustomField}
+            type="text"
+            validate={required}
+            validateFields={["companyName"]}
           />
 
           <Label>Miasto</Label>

@@ -7,6 +7,15 @@ import { PrimaryButton, Button } from "../../styled-components/Buttons";
 import Salary from "../JobOfferHeader/Salary";
 import formatSallaryToString from "../../utils/formatSallaryToString";
 
+const StickyBox = styled(Box)`
+  position: sticky;
+  top: 30px;
+
+  ${({ theme }) => theme.media.tablet`
+    position: initial;
+  `}
+`;
+
 const Date = styled.p`
   margin: 0 0 50px;
   color: ${({ theme }) => theme.color.text.primary};
@@ -25,7 +34,7 @@ const JobOfferApply = ({
   },
   company: { website }
 }) => (
-  <Box>
+  <StickyBox>
     <Salary>{formatSallaryToString(min, max)}</Salary>
     <Date>
       Czas rozpoczęcia:{" "}
@@ -41,7 +50,7 @@ const JobOfferApply = ({
         Strona pracodawcy
       </Button>
     )}
-  </Box>
+  </StickyBox>
 );
 
 JobOfferApply.defaultProps = {

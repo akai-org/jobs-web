@@ -53,4 +53,22 @@ export const ColumnContainer = styled.div`
       `};
       }
     `};
+
+  ${({ wrap }) =>
+    wrap &&
+    css`
+      ${({ theme }) => theme.media.mobile`
+          margin: 0 -10px;
+      `}
+
+      ${Column} {
+        ${({ theme }) => theme.media.tablet`
+          flex: 1;
+        `}
+
+        ${({ theme }) => theme.media.mobile`
+          margin: 0 10px;
+        `}
+      }
+    `};
 `;

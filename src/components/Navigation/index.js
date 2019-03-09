@@ -203,16 +203,6 @@ const Navigation = ({ firebase }) => {
                 Oferty
               </StyledLink>
             </li>
-            <li>
-              <StyledLink to="/about" onClick={onLinkClick}>
-                O nas
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink to="/contact" onClick={onLinkClick}>
-                Kontakt
-              </StyledLink>
-            </li>
           </StyledList>
           {authUser ? (
             <ButtonMargin as={Link} to="/" onClick={logout}>

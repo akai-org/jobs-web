@@ -9,7 +9,7 @@ import JobOfferSkill from "./JobOfferSkill";
 const JobOfferSkills = ({ skills }) => (
   <>
     <HeadingSecondary>Wymagane umiejętności</HeadingSecondary>
-    <ColumnContainer narrow>
+    <ColumnContainer narrow wrap>
       {skills.map(({ name, stars }, i) => (
         <Column key={i}>
           <JobOfferSkill name={name} stars={stars} />

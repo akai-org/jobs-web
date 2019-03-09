@@ -24,12 +24,11 @@ const StyledLink = styled(Link)`
 `;
 
 const SignUpContainer = ({ firebase, history }) => {
-  const createCompanySuccessHandler = result => {
-    console.log(result);
+  const createCompanySuccessHandler = () => {
     Swal.fire({
       type: "success",
       title: "",
-      html: `Konto zostało utworzone!<br /> Proszę poczekać na werywikację konta.`,
+      html: `Rejestracja przebiegła pomyślnie!<br /> Proszę poczekać na weryfikację konta.`,
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Ok",
       focusConfirm: false,

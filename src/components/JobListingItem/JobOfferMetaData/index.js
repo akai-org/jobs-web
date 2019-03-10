@@ -19,8 +19,10 @@ const StyledWrapper = styled.div`
 
 const JobOfferMetaData = ({ salary, level }) => (
   <StyledWrapper>
-    <JobOfferSalary salary={salary} />
-    <JobOfferSkill>{LevelType[level].shortName}</JobOfferSkill>
+    {salary && <JobOfferSalary salary={salary} />}
+    {LevelType && LevelType[level] && LevelType[level].shortName && (
+      <JobOfferSkill>{LevelType[level].shortName}</JobOfferSkill>
+    )}
   </StyledWrapper>
 );
 

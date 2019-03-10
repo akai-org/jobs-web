@@ -32,7 +32,7 @@ const OfferPage = ({ match, firebase }) => {
           setOffer({ id: doc.id, ...doc.data() });
 
           firebase.firestore
-            .collection("company")
+            .collection("companies")
             .where("name", "==", doc.data().company)
             .get()
             .then(query => {
@@ -58,16 +58,18 @@ const OfferPage = ({ match, firebase }) => {
             Wróć do listy ofert
           </BackButton>
           <JobOfferHeader offer={offer} />
-          <JobOfferSkills skills={offer.skills} />
+          {offer.skills && <JobOfferSkills skills={offer.skills} />}
           <ColumnContainer>
-            <Column>
-              <HeadingSecondary>Technologie</HeadingSecondary>
-              <ul>
-                {offer.technologies.map((technology, i) => (
-                  <li key={i}>{technology.name}</li>
-                ))}
-              </ul>
-            </Column>
+            {offer.technologies && (
+              <Column>
+                <HeadingSecondary>Technologie</HeadingSecondary>
+                <ul>
+                  {offer.technologies.map((technology, i) => (
+                    <li key={i}>{technology.name}</li>
+                  ))}
+                </ul>
+              </Column>
+            )}
             <Column>
               <HeadingSecondary>{offer.description.title}</HeadingSecondary>
               <p>{offer.description.text}</p>

@@ -56,7 +56,7 @@ const SignUpContainer = ({ firebase, history }) => {
     required,
     regex(
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z]{8,})$/,
-      "Hasło powinno zawierać 1 małą literę, 1 dużą literę, 1 cyfrę oraz składać się z przynajmniej 8 znaków"
+      "Hasło powinno zawierać 1 małą literę, 1 dużą literę, 1 cyfrę oraz składać się przynajmniej z 8 znaków"
     )
   );
 

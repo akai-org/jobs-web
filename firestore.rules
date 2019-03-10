@@ -9,6 +9,15 @@ service cloud.firestore {
       allow create: if request.auth.uid != null;
     }
     
+    match /companies/{document=**} {
+    	allow read;
+    }
+    
+    match /companies/{userId} {
+      allow update: if request.auth.uid == userId;
+      allow create: if request.auth.uid != null;
+    }
+    
     match /offer/{document=**} {
     	function isOwner() {
         return request.auth.uid == request.resource.data.author_uid;

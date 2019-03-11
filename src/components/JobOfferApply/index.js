@@ -18,11 +18,7 @@ const PrimaryButtonMargin = styled(PrimaryButton)`
 `;
 
 const JobOfferApply = ({
-  offer: {
-    startDate,
-    salary: { min, max },
-    link
-  },
+  offer: { startDate, salary: { min, max } = {}, link },
   company: { website }
 }) => (
   <Box>

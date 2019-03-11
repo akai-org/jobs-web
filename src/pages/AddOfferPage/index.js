@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { compose } from "recompose";
+import arrayMutators from "final-form-arrays";
 
 import { Form, Field } from "react-final-form";
 import Swal from "sweetalert2";
@@ -16,7 +17,11 @@ import { LevelTypeList } from "../../consts/LevelType";
 import { OfferTypeList } from "../../consts/OfferType";
 import SelectField from "../../components/Form/SelectField";
 
+import SkillsArrayForm from "../../components/Form/SkillsArrayForm";
+import TechnologiesArrayForm from "../../components/Form/TechnologiesArrayForm";
+
 const AddOfferPage = ({ authUser, firebase }) => {
+  // const saveOffer = data => console.log(data)
   const saveOffer = data => {
     firebase.firestore
       .collection("companies")
@@ -51,8 +56,10 @@ const AddOfferPage = ({ authUser, firebase }) => {
       <h3>Email:</h3>
       <p>{authUser && authUser.email}</p>
 
-      <Form onSubmit={saveOffer}>
-        {({ handleSubmit, submitting }) => (
+      <Form
+        onSubmit={saveOffer}
+        mutators={{ ...arrayMutators }}
+        render={({ handleSubmit, submitting, mutators: { push } }) => (
           <form onSubmit={handleSubmit}>
             <Field
               name="name"
@@ -131,12 +138,18 @@ const AddOfferPage = ({ authUser, firebase }) => {
               validate={required}
             />
 
+            <strong>Umiejętności</strong>
+            <SkillsArrayForm name="skills" push={push} />
+
+            <strong>Technologie</strong>
+            <TechnologiesArrayForm name="technologies" push={push} />
+
             <button type="submit" disabled={submitting}>
               Dodaj ofertę pracy
             </button>
           </form>
         )}
-      </Form>
+      />
       <Link to="/">Wróć do strony głównej</Link>
     </Container>
   );

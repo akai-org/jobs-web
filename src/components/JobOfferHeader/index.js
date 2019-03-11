@@ -32,12 +32,7 @@ const ImageContainer = styled.div`
 `;
 
 const JobOfferHeader = ({
-  offer: {
-    image,
-    company,
-    name,
-    salary: { min, max }
-  }
+  offer: { image, company, name, salary: { min, max } = {} }
 }) => (
   <StyledWrapper>
     <ImageContainer>

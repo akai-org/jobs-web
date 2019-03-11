@@ -32,7 +32,11 @@ const SelectField = ({
       wrap="off"
       hasError={hasError(error, touched)}
     >
-      {emptyRow && <option />}
+      {emptyRow && (
+        <option value="" disabled>
+          {placeholder}
+        </option>
+      )}
       {options && createOptions(options)}
     </Select>
 

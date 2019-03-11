@@ -12,137 +12,136 @@ import { withAuthUser, withAuthorization, withFirebase } from "../../firebase";
 import Container from "../../components/Container";
 import { required } from "../../validators";
 
-const AddOfferPage = ({ authUser, firebase }) => (
-  <Container>
-    <h3>Email:</h3>
-    <p>{authUser && authUser.email}</p>
+import { LevelTypeList } from "../../consts/LevelType";
+import { OfferTypeList } from "../../consts/OfferType";
+import SelectField from "../../components/Form/SelectField";
 
-    <Form
-      onSubmit={data => {
-        firebase.firestore
-          .collection("companies")
-          .doc(authUser.uid)
-          .get()
-          .then(doc => {
-            if (doc.exists) {
-              firebase.firestore
-                .collection("offer")
-                .add({ ...data, company: doc.data().companyName })
-                .then(() => {
-                  Swal.fire({
-                    type: "success",
-                    title: "",
-                    html: `Oferta została dodana pomyślnie.`,
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: "Ok",
-                    focusConfirm: false,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: true
-                  }).then(() => {});
-                });
-            } else {
-              console.error("Wystąpił problem z autoryzacją!");
-            }
-          });
-      }}
-    >
-      {({ handleSubmit, submitting }) => (
-        <form onSubmit={handleSubmit}>
-          <Field
-            name="name"
-            component={CustomField}
-            type="text"
-            placeholder="Stanowisko"
-            validate={required}
-          />
+const AddOfferPage = ({ authUser, firebase }) => {
+  const saveOffer = data => {
+    firebase.firestore
+      .collection("companies")
+      .doc(authUser.uid)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          firebase.firestore
+            .collection("offer")
+            .add({ ...data, company: doc.data().companyName })
+            .then(() => {
+              Swal.fire({
+                type: "success",
+                title: "",
+                html: `Oferta została dodana pomyślnie.`,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Ok",
+                focusConfirm: false,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: true
+              }).then(() => {});
+            });
+        } else {
+          console.error("Wystąpił problem z autoryzacją!");
+        }
+      });
+  };
 
-          <Field
-            name="image"
-            component={CustomField}
-            type="text"
-            placeholder="Łącze do obrazka"
-            validate={required}
-          />
+  return (
+    <Container>
+      <h3>Email:</h3>
+      <p>{authUser && authUser.email}</p>
 
-          <Field
-            name="link"
-            component={CustomField}
-            type="text"
-            placeholder="Łącze do oferty"
-            validate={required}
-          />
+      <Form onSubmit={saveOffer}>
+        {({ handleSubmit, submitting }) => (
+          <form onSubmit={handleSubmit}>
+            <Field
+              name="name"
+              component={CustomField}
+              type="text"
+              placeholder="Stanowisko"
+              validate={required}
+            />
 
-          <Field
-            name="location"
-            component={CustomField}
-            type="text"
-            placeholder="Lokalizacja"
-            validate={required}
-          />
+            <Field
+              name="image"
+              component={CustomField}
+              type="text"
+              placeholder="Łącze do obrazka"
+              validate={required}
+            />
 
-          <strong>Widełki płacowe</strong>
-          <Field
-            name="salary.min"
-            component={CustomField}
-            type="number"
-            placeholder="Wynagrodzenie minimalne"
-          />
-          <Field
-            name="salary.max"
-            component={CustomField}
-            type="number"
-            placeholder="Wynagrodzenie maksymalne"
-          />
+            <Field
+              name="link"
+              component={CustomField}
+              type="text"
+              placeholder="Łącze do oferty"
+              validate={required}
+            />
 
-          <Field
-            name="type"
-            component="select"
-            placeholder="Kategoria ogłoszenia"
-            validate={required}
-          >
-            <option />
-            <option value="BACKEND">Back-end</option>
-            <option value="FRONTEND">Front-end</option>
-            <option value="MOBILE">Mobile</option>
-          </Field>
+            <Field
+              name="location"
+              component={CustomField}
+              type="text"
+              placeholder="Lokalizacja"
+              validate={required}
+            />
 
-          <Field
-            name="level"
-            component="select"
-            placeholder="Poziom"
-            validate={required}
-          >
-            <option />
-            <option value="INTERNSHIP">Staż</option>
-            <option value="JUNIOR">Junior</option>
-            <option value="REGULAR">Regular</option>
-          </Field>
+            <strong>Widełki płacowe</strong>
+            <Field
+              name="salary.min"
+              component={CustomField}
+              type="number"
+              placeholder="Wynagrodzenie minimalne"
+            />
+            <Field
+              name="salary.max"
+              component={CustomField}
+              type="number"
+              placeholder="Wynagrodzenie maksymalne"
+            />
 
-          <Field
-            name="description.title"
-            component={CustomField}
-            type="text"
-            placeholder="Tytuł do opisu np. 'Perspektywa rozwoju'"
-            validate={required}
-          />
-          <Field
-            name="description.text"
-            component={CustomField}
-            type="text"
-            placeholder="Krótki opis ogłoszenia"
-            validate={required}
-          />
+            <Field
+              name="type"
+              component={SelectField}
+              options={OfferTypeList}
+              validate={required}
+              placeholder="Kategoria ogłoszenia"
+            />
 
-          <button type="submit" disabled={submitting}>
-            Dodaj ofertę pracy
-          </button>
-        </form>
-      )}
-    </Form>
-    <Link to="/">Wróć do strony głównej</Link>
-  </Container>
-);
+            <Field
+              name="level"
+              component={SelectField}
+              options={LevelTypeList}
+              validate={required}
+              placeholder="Poziom"
+            />
+
+            <Field
+              name="description.title"
+              component={CustomField}
+              type="text"
+              placeholder="Tytuł do opisu np. 'Perspektywa rozwoju'"
+              validate={required}
+            />
+            <Field
+              name="description.text"
+              component={CustomField}
+              type="text"
+              placeholder="Krótki opis ogłoszenia"
+              validate={required}
+            />
+
+            <button type="submit" disabled={submitting}>
+              Dodaj ofertę pracy
+            </button>
+          </form>
+        )}
+      </Form>
+      <Link to="/">Wróć do strony głównej</Link>
+    </Container>
+  );
+};
+
 AddOfferPage.propTypes = {
   authUser: PropTypes.object,
   firebase: PropTypes.shape

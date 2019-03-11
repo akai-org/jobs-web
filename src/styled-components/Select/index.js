@@ -13,7 +13,6 @@ const Select = styled.select`
   display: block;
   font-size: 14px;
   height: 34px;
-  margin-bottom: 15px;
   padding: 6px 12px;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   width: 100%;

@@ -20,7 +20,6 @@ const TextAreaField = ({
     <TextArea
       {...input}
       placeholder={placeholder}
-      wrap="off"
       hasError={hasError(error, touched)}
     />
     {hasError(error, touched) && (

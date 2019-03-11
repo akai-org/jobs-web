@@ -5,6 +5,8 @@ import styled, { css } from "styled-components";
 import Box from "../../../styled-components/Box";
 
 const BoxWithMargin = styled(Box)`
+  max-width: 300px;
+
   ${({ theme }) => theme.media.tablet`
     margin-bottom: 20px;
   `}

@@ -175,7 +175,7 @@ const AddOfferPage = ({ authUser, firebase }) => {
               </Column>
             </ColumnContainer>
 
-            <MarginButton as="button" type="submit" disabled={submitting}>
+            <MarginButton large as="button" type="submit" disabled={submitting}>
               Dodaj ofertę pracy
             </MarginButton>
           </form>

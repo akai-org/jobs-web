@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import Heading from "../../styled-components/Heading";
-import Subheading from "../../styled-components/Heading";
+import Subheading from "../../styled-components/Subheading";
 import { PrimaryButton } from "../../styled-components/Buttons";
 import { Column, ColumnContainer } from "../../styled-components/Columns";
 import artwork from "../../assets/images/artwork.png";

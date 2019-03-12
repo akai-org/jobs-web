@@ -18,7 +18,8 @@ import { withFirebase } from "../../firebase";
 import { composeValidator, required } from "../../validators";
 
 const FormWrapper = styled.form`
-  width: 420px;
+  max-width: 420px;
+  width: 100%;
 `;
 
 const ButtonMargin = styled(PrimaryButton)`

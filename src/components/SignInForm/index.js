@@ -8,7 +8,8 @@ import { required } from "../../validators";
 import { Field as CustomField } from "../Form";
 
 const FormWrapper = styled.form`
-  width: 420px;
+  max-width: 420px;
+  width: 100%;
 `;
 
 const ButtonMargin = styled(PrimaryButton)`

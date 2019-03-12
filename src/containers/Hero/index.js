@@ -25,7 +25,7 @@ export default () => (
       <Heading>Rozpocznij karierę w IT.</Heading>
       <Subheading as="h2">Przeglądaj tysiące ofert i aplikuj.</Subheading>
       <p>
-        Strona AKAI Jobs pomaga codziennie tysiącom osób w znalezieniu
+        Strona skyrocket pomaga codziennie tysiącom osób w znalezieniu
         najlepszego punktu startowego na ścieżce kariery. Odkryj wymarzoną
         pierwszą pracę i zdobądź pierwsze doświadczenia w świecie IT.
       </p>

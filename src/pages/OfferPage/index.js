@@ -17,12 +17,14 @@ import {
 } from "../../styled-components/Columns";
 import BackButton from "../../styled-components/BackButton";
 import HeadingSecondary from "../../styled-components/HeadingSecondary";
+import { pageView } from "../../services/AnalyticsService";
 
 const OfferPage = ({ match, firebase }) => {
   const [offer, setOffer] = useState(false);
   const [company, setCompany] = useState(false);
 
   useEffect(() => {
+    pageView();
     firebase.firestore
       .collection("offer")
       .doc(match.params.id)

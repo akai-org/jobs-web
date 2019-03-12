@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import ReactGA from "react-ga";
 
 import { withAuthentication } from "./firebase";
 import theme from "./styles/theme";
@@ -14,6 +15,8 @@ const OfferPage = lazy(() => import("./pages/OfferPage"));
 const SignInPage = lazy(() => import("./pages/SignInPage"));
 const AddOfferPage = lazy(() => import("./pages/AddOfferPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
+
+ReactGA.initialize("UA-109499574-7");
 
 const App = () => (
   <ThemeProvider theme={theme}>

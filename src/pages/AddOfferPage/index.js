@@ -8,6 +8,8 @@ import arrayMutators from "final-form-arrays";
 import { Form, Field } from "react-final-form";
 import Swal from "sweetalert2";
 
+import { pageView } from "../../services/AnalyticsService";
+
 import { Field as CustomField } from "../../components/Form";
 
 import { withAuthUser, withAuthorization, withFirebase } from "../../firebase";
@@ -33,6 +35,7 @@ const MarginButton = styled(PrimaryButton)`
 `;
 
 const AddOfferPage = ({ authUser, firebase, history }) => {
+  pageView();
   const saveOffer = data => {
     firebase.firestore
       .collection("companies")

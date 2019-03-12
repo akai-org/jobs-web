@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { pageView } from "../../services/AnalyticsService";
 
 import { withFirebase } from "../../firebase";
 
@@ -11,6 +12,7 @@ const ListingPage = ({ firebase }) => {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
+    pageView();
     firebase.firestore
       .collection("offer")
       .get()

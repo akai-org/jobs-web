@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import arrayMutators from "final-form-arrays";
 
@@ -32,8 +32,7 @@ const MarginButton = styled(PrimaryButton)`
   margin: 20px 0 50px;
 `;
 
-const AddOfferPage = ({ authUser, firebase }) => {
-  // const saveOffer = data => console.log(data)
+const AddOfferPage = ({ authUser, firebase, history }) => {
   const saveOffer = data => {
     firebase.firestore
       .collection("companies")
@@ -55,7 +54,9 @@ const AddOfferPage = ({ authUser, firebase }) => {
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 allowEnterKey: true
-              }).then(() => {});
+              }).then(() => {
+                history.push("/offers");
+              });
             });
         } else {
           console.error("Wystąpił problem z autoryzacją!");
@@ -85,6 +86,7 @@ const AddOfferPage = ({ authUser, firebase }) => {
                   type="text"
                   placeholder="Stanowisko"
                   validate={required}
+                  validateFields={["name"]}
                 />
 
                 <Field
@@ -93,6 +95,7 @@ const AddOfferPage = ({ authUser, firebase }) => {
                   type="text"
                   placeholder="Lokalizacja"
                   validate={required}
+                  validateFields={["location"]}
                 />
 
                 <Field
@@ -101,6 +104,7 @@ const AddOfferPage = ({ authUser, firebase }) => {
                   options={OfferTypeList}
                   validate={required}
                   placeholder="Kategoria ogłoszenia"
+                  validateFields={["type"]}
                 />
 
                 <Field
@@ -109,6 +113,7 @@ const AddOfferPage = ({ authUser, firebase }) => {
                   options={LevelTypeList}
                   validate={required}
                   placeholder="Poziom"
+                  validateFields={["level"]}
                 />
 
                 <HeadingSecondary>Opis ogłoszenia</HeadingSecondary>
@@ -118,6 +123,7 @@ const AddOfferPage = ({ authUser, firebase }) => {
                   type="text"
                   placeholder="Tytuł do opisu np. 'Perspektywa rozwoju'"
                   validate={required}
+                  validateFields={["description.title"]}
                 />
                 <Field
                   name="description.text"
@@ -125,6 +131,7 @@ const AddOfferPage = ({ authUser, firebase }) => {
                   type="text"
                   placeholder="Krótki opis ogłoszenia"
                   validate={required}
+                  validateFields={["description.text"]}
                 />
               </Column>
               <Column>
@@ -163,6 +170,7 @@ const AddOfferPage = ({ authUser, firebase }) => {
                   type="text"
                   placeholder="Link do obrazka"
                   validate={required}
+                  validateFields={["image"]}
                 />
 
                 <Field
@@ -171,6 +179,7 @@ const AddOfferPage = ({ authUser, firebase }) => {
                   type="text"
                   placeholder="Link do oferty"
                   validate={required}
+                  validateFields={["link"]}
                 />
               </Column>
             </ColumnContainer>
@@ -187,7 +196,8 @@ const AddOfferPage = ({ authUser, firebase }) => {
 
 AddOfferPage.propTypes = {
   authUser: PropTypes.object,
-  firebase: PropTypes.shape
+  firebase: PropTypes.object,
+  history: PropTypes.object
 };
 
 const condition = authUser => authUser !== null;
@@ -195,5 +205,6 @@ const condition = authUser => authUser !== null;
 export default compose(
   withFirebase,
   withAuthUser,
-  withAuthorization(condition)
+  withAuthorization(condition),
+  withRouter
 )(AddOfferPage);

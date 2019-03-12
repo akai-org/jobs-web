@@ -41,6 +41,7 @@ const TechnologiesArrayForm = ({ label, name, push }) => {
               component={Field}
               type="text"
               placeholder="Technologia"
+              validateFields={["name"]}
             />
           </InputWrapper>
           <ArrayInputs.RemoveBtn />

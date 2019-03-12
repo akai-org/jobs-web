@@ -6,7 +6,26 @@ const OfferType = {
   BACKEND: {
     name: "backend",
     barColor: "lime"
+  },
+  MOBILE: {
+    name: "mobile",
+    barColor: "hotpink"
   }
 };
 
-export default OfferType;
+const OfferTypeList = [
+  {
+    value: "FRONTEND",
+    label: "Frontend"
+  },
+  {
+    value: "BACKEND",
+    label: "Backend"
+  },
+  {
+    value: "MOBILE",
+    label: "Mobile"
+  }
+];
+
+export { OfferType as default, OfferTypeList };

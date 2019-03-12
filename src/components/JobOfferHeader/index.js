@@ -23,7 +23,7 @@ const HeaderSalary = styled(Salary)`
 const StyledWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 30px 0;
+  margin: 40px 0 50px;
 `;
 
 const ImageContainer = styled.div`
@@ -32,12 +32,7 @@ const ImageContainer = styled.div`
 `;
 
 const JobOfferHeader = ({
-  offer: {
-    image,
-    company,
-    name,
-    salary: { min, max }
-  }
+  offer: { image, company, name, salary: { min, max } = {} }
 }) => (
   <StyledWrapper>
     <ImageContainer>

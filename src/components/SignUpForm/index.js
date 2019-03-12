@@ -18,11 +18,11 @@ import { withFirebase } from "../../firebase";
 import { composeValidator, required } from "../../validators";
 
 const FormWrapper = styled.form`
-  width: 320px;
+  width: 420px;
 `;
 
 const ButtonMargin = styled(PrimaryButton)`
-  margin-bottom: 20px;
+  margin: 20px 0;
 `;
 
 const SignUpForm = ({ onSubmitHandler, validPassword, firebase }) => {

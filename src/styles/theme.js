@@ -43,6 +43,10 @@ const theme = {
       dropdown: "#222",
       tickmark: "#3ccb3c",
       indicator: "#f42e4f"
+    },
+    state: {
+      success: "#e5e6e7",
+      error: "#f42e4f"
     }
   },
   font: {

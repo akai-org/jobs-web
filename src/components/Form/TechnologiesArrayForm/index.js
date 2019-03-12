@@ -9,10 +9,18 @@ import ArrayFormHeader from "../../../styled-components/ArrayFormHeader";
 
 const StyledWrapper = styled.div`
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 `;
 
 const TechnologiesContainer = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+`;
+
+const InputWrapper = styled.div`
+  padding-right: 20px;
+  flex-basis: 75%;
+  flex-grow: 0;
 `;
 
 const TechnologiesArrayForm = ({ label, name, push }) => {
@@ -26,13 +34,15 @@ const TechnologiesArrayForm = ({ label, name, push }) => {
       </ArrayFormHeader>
       <ArrayInputs fieldsName={name}>
         <StyledWrapper>
-          <ArrayInputs.Field
-            validate={required}
-            name="name"
-            component={Field}
-            type="text"
-            placeholder="Technologia"
-          />
+          <InputWrapper>
+            <ArrayInputs.Field
+              validate={required}
+              name="name"
+              component={Field}
+              type="text"
+              placeholder="Technologia"
+            />
+          </InputWrapper>
           <ArrayInputs.RemoveBtn />
         </StyledWrapper>
       </ArrayInputs>

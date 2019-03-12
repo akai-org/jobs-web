@@ -7,13 +7,38 @@ import ArrayInputs from "../ArrayInputs";
 import Field from "../Field";
 import SelectField from "../SelectField";
 import ArrayFormHeader from "../../../styled-components/ArrayFormHeader";
+import { Button } from "../../../styled-components/Buttons";
 
 const StyledWrapper = styled.div`
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  > * {
+    flex: 1;
+  }
+`;
+
+const InputWrapper = styled.div`
+  padding-right: 20px;
+`;
+
+const ControlsWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  ${({ theme }) => theme.media.mobile`
+    flex: 2;
+  `}
+
+  ${Button} {
+    margin-left: 10px;
+  }
 `;
 
 const SkillsContainer = styled.div`
-  margin-bottom: 15px;
+  margin: 30px 0;
 `;
 
 const skills = [
@@ -42,21 +67,25 @@ const SkillsArrayForm = ({ label, name, push }) => {
       </ArrayFormHeader>
       <ArrayInputs fieldsName={name}>
         <StyledWrapper>
-          <ArrayInputs.Field
-            validate={required}
-            name="name"
-            component={Field}
-            type="text"
-            placeholder="Umiejętność"
-          />
-          <ArrayInputs.Field
-            name="stars"
-            component={SelectField}
-            options={skills}
-            validate={required}
-            placeholder="ocena"
-          />
-          <ArrayInputs.RemoveBtn />
+          <InputWrapper>
+            <ArrayInputs.Field
+              validate={required}
+              name="name"
+              component={Field}
+              type="text"
+              placeholder="Umiejętność"
+            />
+          </InputWrapper>
+          <ControlsWrapper>
+            <ArrayInputs.Field
+              name="stars"
+              component={SelectField}
+              options={skills}
+              validate={required}
+              placeholder="ocena"
+            />
+            <ArrayInputs.RemoveBtn />
+          </ControlsWrapper>
         </StyledWrapper>
       </ArrayInputs>
     </SkillsContainer>

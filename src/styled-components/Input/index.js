@@ -11,7 +11,7 @@ const Input = styled.input`
   box-sizing: border-box;
   color: inherit;
   display: block;
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.font.size.label.secondary};
   height: 34px;
   padding: 20px 0;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;

@@ -213,14 +213,25 @@ const Navigation = ({ firebase }) => {
               Zaloguj się
             </ButtonMargin>
           )}
-          <SecondaryButton
-            as={Link}
-            to="/new-offer"
-            onClick={onLinkClick}
-            secondary
-          >
-            Dodaj ofertę
-          </SecondaryButton>
+          {authUser ? (
+            <SecondaryButton
+              as={Link}
+              to="/new-offer"
+              onClick={onLinkClick}
+              secondary
+            >
+              Dodaj ofertę
+            </SecondaryButton>
+          ) : (
+            <SecondaryButton
+              as={Link}
+              to="/signup"
+              onClick={onLinkClick}
+              secondary
+            >
+              Załóż konto
+            </SecondaryButton>
+          )}
         </StyledWrapper>
       </StyledNav>
       <StyledButton onClick={() => setMenuState(!menuState)}>

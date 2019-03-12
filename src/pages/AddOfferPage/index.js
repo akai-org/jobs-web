@@ -45,7 +45,11 @@ const AddOfferPage = ({ authUser, firebase, history }) => {
         if (doc.exists) {
           firebase.firestore
             .collection("offer")
-            .add({ ...data, company: doc.data().companyName })
+            .add({
+              ...data,
+              timestamp: new Date().getTime(),
+              company: doc.data().companyName
+            })
             .then(() => {
               Swal.fire({
                 type: "success",

@@ -190,8 +190,7 @@ AddOfferPage.propTypes = {
   firebase: PropTypes.shape
 };
 
-// const condition = authUser => authUser !== null;
-const condition = () => true;
+const condition = authUser => authUser !== null;
 
 export default compose(
   withFirebase,

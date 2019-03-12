@@ -74,6 +74,7 @@ const SkillsArrayForm = ({ label, name, push }) => {
               component={Field}
               type="text"
               placeholder="Umiejętność"
+              validateFields={["name"]}
             />
           </InputWrapper>
           <ControlsWrapper>
@@ -83,6 +84,7 @@ const SkillsArrayForm = ({ label, name, push }) => {
               options={skills}
               validate={required}
               placeholder="ocena"
+              validateFields={["stars"]}
             />
             <ArrayInputs.RemoveBtn />
           </ControlsWrapper>

@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { compose } from "recompose";
@@ -19,6 +20,17 @@ import SelectField from "../../components/Form/SelectField";
 
 import SkillsArrayForm from "../../components/Form/SkillsArrayForm";
 import TechnologiesArrayForm from "../../components/Form/TechnologiesArrayForm";
+
+import Heading from "../../styled-components/Heading";
+import Subheading from "../../styled-components/Subheading";
+import HeadingSecondary from "../../styled-components/HeadingSecondary";
+import BackButton from "../../styled-components/BackButton";
+import { PrimaryButton } from "../../styled-components/Buttons";
+import { Column, ColumnContainer } from "../../styled-components/Columns";
+
+const MarginButton = styled(PrimaryButton)`
+  margin: 20px 0 50px;
+`;
 
 const AddOfferPage = ({ authUser, firebase }) => {
   // const saveOffer = data => console.log(data)
@@ -52,105 +64,123 @@ const AddOfferPage = ({ authUser, firebase }) => {
   };
 
   return (
-    <Container>
-      <h3>Email:</h3>
-      <p>{authUser && authUser.email}</p>
+    <Container padded>
+      <BackButton as={Link} to="/" small>
+        Wróć do strony głównej
+      </BackButton>
+      <Heading>Dodaj ofertę</Heading>
+      <Subheading as="p">{authUser && authUser.email}</Subheading>
 
       <Form
         onSubmit={saveOffer}
         mutators={{ ...arrayMutators }}
         render={({ handleSubmit, submitting, mutators: { push } }) => (
           <form onSubmit={handleSubmit}>
-            <Field
-              name="name"
-              component={CustomField}
-              type="text"
-              placeholder="Stanowisko"
-              validate={required}
-            />
+            <ColumnContainer>
+              <Column>
+                <HeadingSecondary>Informacje ogólne</HeadingSecondary>
+                <Field
+                  name="name"
+                  component={CustomField}
+                  type="text"
+                  placeholder="Stanowisko"
+                  validate={required}
+                />
 
-            <Field
-              name="image"
-              component={CustomField}
-              type="text"
-              placeholder="Łącze do obrazka"
-              validate={required}
-            />
+                <Field
+                  name="location"
+                  component={CustomField}
+                  type="text"
+                  placeholder="Lokalizacja"
+                  validate={required}
+                />
 
-            <Field
-              name="link"
-              component={CustomField}
-              type="text"
-              placeholder="Łącze do oferty"
-              validate={required}
-            />
+                <Field
+                  name="type"
+                  component={SelectField}
+                  options={OfferTypeList}
+                  validate={required}
+                  placeholder="Kategoria ogłoszenia"
+                />
 
-            <Field
-              name="location"
-              component={CustomField}
-              type="text"
-              placeholder="Lokalizacja"
-              validate={required}
-            />
+                <Field
+                  name="level"
+                  component={SelectField}
+                  options={LevelTypeList}
+                  validate={required}
+                  placeholder="Poziom"
+                />
 
-            <strong>Widełki płacowe</strong>
-            <Field
-              name="salary.min"
-              component={CustomField}
-              type="number"
-              placeholder="Wynagrodzenie minimalne"
-            />
-            <Field
-              name="salary.max"
-              component={CustomField}
-              type="number"
-              placeholder="Wynagrodzenie maksymalne"
-            />
+                <HeadingSecondary>Opis ogłoszenia</HeadingSecondary>
+                <Field
+                  name="description.title"
+                  component={CustomField}
+                  type="text"
+                  placeholder="Tytuł do opisu np. 'Perspektywa rozwoju'"
+                  validate={required}
+                />
+                <Field
+                  name="description.text"
+                  component={CustomField}
+                  type="text"
+                  placeholder="Krótki opis ogłoszenia"
+                  validate={required}
+                />
+              </Column>
+              <Column>
+                <HeadingSecondary>Widełki płacowe</HeadingSecondary>
+                <Field
+                  name="salary.min"
+                  component={CustomField}
+                  type="number"
+                  placeholder="Wynagrodzenie minimalne"
+                />
+                <Field
+                  name="salary.max"
+                  component={CustomField}
+                  type="number"
+                  placeholder="Wynagrodzenie maksymalne"
+                />
 
-            <Field
-              name="type"
-              component={SelectField}
-              options={OfferTypeList}
-              validate={required}
-              placeholder="Kategoria ogłoszenia"
-            />
+                <HeadingSecondary>Wymagania</HeadingSecondary>
 
-            <Field
-              name="level"
-              component={SelectField}
-              options={LevelTypeList}
-              validate={required}
-              placeholder="Poziom"
-            />
+                <SkillsArrayForm
+                  label="Umiejętności"
+                  name="skills"
+                  push={push}
+                />
 
-            <Field
-              name="description.title"
-              component={CustomField}
-              type="text"
-              placeholder="Tytuł do opisu np. 'Perspektywa rozwoju'"
-              validate={required}
-            />
-            <Field
-              name="description.text"
-              component={CustomField}
-              type="text"
-              placeholder="Krótki opis ogłoszenia"
-              validate={required}
-            />
+                <TechnologiesArrayForm
+                  label="Technologie"
+                  name="technologies"
+                  push={push}
+                />
 
-            <strong>Umiejętności</strong>
-            <SkillsArrayForm name="skills" push={push} />
+                <HeadingSecondary>Linki</HeadingSecondary>
+                <Field
+                  name="image"
+                  component={CustomField}
+                  type="text"
+                  placeholder="Link do obrazka"
+                  validate={required}
+                />
 
-            <strong>Technologie</strong>
-            <TechnologiesArrayForm name="technologies" push={push} />
+                <Field
+                  name="link"
+                  component={CustomField}
+                  type="text"
+                  placeholder="Link do oferty"
+                  validate={required}
+                />
+              </Column>
+            </ColumnContainer>
 
-            <button type="submit" disabled={submitting}>
+            <MarginButton as="button" type="submit" disabled={submitting}>
               Dodaj ofertę pracy
-            </button>
+            </MarginButton>
           </form>
         )}
       />
-      <Link to="/">Wróć do strony głównej</Link>
     </Container>
   );
 };
@@ -160,7 +190,8 @@ AddOfferPage.propTypes = {
   firebase: PropTypes.shape
 };
 
-const condition = authUser => authUser !== null;
+// const condition = authUser => authUser !== null;
+const condition = () => true;
 
 export default compose(
   withFirebase,

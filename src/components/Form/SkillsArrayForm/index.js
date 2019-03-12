@@ -6,6 +6,7 @@ import { required } from "../../../validators";
 import ArrayInputs from "../ArrayInputs";
 import Field from "../Field";
 import SelectField from "../SelectField";
+import ArrayFormHeader from "../../../styled-components/ArrayFormHeader";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -30,12 +31,15 @@ const skills = [
   }
 ];
 
-const SkillsArrayForm = ({ name, push }) => {
+const SkillsArrayForm = ({ label, name, push }) => {
   const onClickHandler = () => push(name, undefined);
 
   return (
     <SkillsContainer>
-      <ArrayInputs.AddBtn onClickHandler={onClickHandler} />
+      <ArrayFormHeader>
+        <strong>{label}</strong>
+        <ArrayInputs.AddBtn onClickHandler={onClickHandler} />
+      </ArrayFormHeader>
       <ArrayInputs fieldsName={name}>
         <StyledWrapper>
           <ArrayInputs.Field
@@ -60,6 +64,7 @@ const SkillsArrayForm = ({ name, push }) => {
 };
 
 SkillsArrayForm.propTypes = {
+  label: PropTypes.string,
   name: PropTypes.string,
   push: PropTypes.func
 };

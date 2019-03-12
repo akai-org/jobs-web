@@ -8,11 +8,11 @@ import { required } from "../../validators";
 import { Field as CustomField } from "../Form";
 
 const FormWrapper = styled.form`
-  width: 320px;
+  width: 420px;
 `;
 
 const ButtonMargin = styled(PrimaryButton)`
-  margin-bottom: 20px;
+  margin: 20px 0;
 `;
 
 const SignInForm = ({ onSubmitHandler }) => (

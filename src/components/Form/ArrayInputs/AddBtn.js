@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { SecondaryButton } from "../../../styled-components/Buttons";
 
 const AddBtn = ({ onClickHandler }) => (
-  <button type="button" onClick={onClickHandler}>
+  <SecondaryButton small as="button" type="button" onClick={onClickHandler}>
     Dodaj
-  </button>
+  </SecondaryButton>
 );
 
 AddBtn.propTypes = {

@@ -1,7 +1,6 @@
 {
   "name": "jobs-web",
   "version": "0.0.1",
-  "private": true,
   "dependencies": {
     "final-form": "^4.11.0",
     "final-form-arrays": "^1.1.2",

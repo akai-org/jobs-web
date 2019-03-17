@@ -1,0 +1,32 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /company/{document=**} {
+    	allow read;
+    }
+    
+    match /company/{userId} {
+      allow update: if request.auth.uid == userId;
+      allow create: if request.auth.uid != null;
+    }
+    
+    match /companies/{document=**} {
+    	allow read;
+    }
+    
+    match /companies/{userId} {
+      allow update: if request.auth.uid == userId;
+      allow create: if request.auth.uid != null;
+    }
+    
+    match /offer/{document=**} {
+    	function isOwner() {
+        return request.auth.uid == request.resource.data.author_uid;
+      }
+    
+    	allow read;
+    	allow delete: if isOwner();
+    	allow update: if isOwner();
+      allow create: if request.auth.uid != null;
+    }
+  }
+}

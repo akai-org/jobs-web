@@ -7,6 +7,8 @@ import Navigation from "../Navigation";
 
 const StyledWrapper = styled.header`
   padding: 1rem 0;
+  border-bottom: ${({ theme }) => theme.size.border.base} solid
+    ${({ theme }) => theme.color.elements.line};
 
   ${({ theme }) => theme.media.mobile`
     font-size: ${props => props.theme.font.size.label.secondary};
@@ -20,7 +22,7 @@ const StyledContent = styled.div`
 `;
 
 const StyledLogo = styled.img`
-  width: 80px;
+  width: 120px;
   position: relative;
   z-index: 300;
 `;

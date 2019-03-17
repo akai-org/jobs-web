@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+script:
+- npm run build
+deploy:
+- provider: firebase
+  project: skyrocket-me
+  token:
+    secure: WT9Q9rfSAgBHcz/H53FJ5/2TUQYNWDj7VI39LOLYtwqvR364ykLbUKVjCCHG3jQNSzD+87l2qRGNGC/9C0w5wwbbG/kR1BHjBztDe5b+LcjiamhrjykeBrdS8WvDqB/LjOypJg4CWx+nLIth+gXpXDu8unkfLzsuB2Ykwk1tygSTUyNVEgUFi1IfoSYPS3jjfF7v5x8Dvmi9IDtJzS/e4+R+m6J7Pnz2sdaOBz4m8Rx4wzYdaxxhuZGOkb3K7m+ZyZteZR9CZPVRf9bj942HSg4klc4jMI8N2G8+oyv/qKQTizl337cEqlZLK7/Boux/cjRv+KMjg4QMAGxHesmI3kZ316Guqtww0akqpegbljqKKFAk37Tw5uPkl5myF/eA1278ZVz6xMV2a0Yzfqd461mtKHcHFcMnbP3YQe33t5oOJ9Q4hT0oJZByxdB/sCPI6Z9HEOzHVYSLrpWcvM6prnPvNhFm042zdOpw0gyVWLBgHkflO2R1CodNEoeNhykh75sNwWQXCytHNlDf09EtnVsAN08wOLaeNtp+1BF+2xHLw6GIHGU/gxm+GbnQQr5WSIe7rSIwLGiQxRHjXMd2b2Ch9tnylIP2Zf8XqWR+4LpJfkzi51c9pXWl/aaBskgUbIsj+I5pY7YPwrCJzvPPJ+CTXM3HsIxAb71JHTDWBa4=
+  skip_cleanup: true
+  on:
+    branch: develop

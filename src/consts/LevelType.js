@@ -6,7 +6,26 @@ const LevelType = {
   JUNIOR: {
     name: "Junior",
     shortName: "Junior"
+  },
+  REGULAR: {
+    name: "Regular",
+    shortName: "Regular"
   }
 };
 
-export default LevelType;
+const LevelTypeList = [
+  {
+    value: "INTERNSHIP",
+    label: "Internship"
+  },
+  {
+    value: "JUNIOR",
+    label: "Junior"
+  },
+  {
+    value: "REGULAR",
+    label: "Regular"
+  }
+];
+
+export { LevelType as default, LevelTypeList };

@@ -1,31 +1,32 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-import StyledCTA from "../StyledCTA";
+import { SecondaryButton, Button } from "../../styled-components/Buttons";
+import { withFirebase, AuthUserContext } from "../../firebase";
 
 const StyledOverlay = styled.div`
-  display: none;
+  background: ${({ theme }) => theme.color.background.darker};
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0;
+  transition: opacity ${({ theme }) => theme.effects.transition.base},
+    visibility ${({ theme }) => theme.effects.transition.none} 0.4s;
+  visibility: hidden;
+  z-index: 100;
 
-  ${({ theme }) => theme.media.tablet`
-    background: rgba(0, 0, 0, 0.2);
-    position: fixed;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    z-index: 100;
-    transition: opacity ${props => props.theme.effects.transition.slow};
-
-    ${props =>
-      props.isMenuOpened &&
-      `
-      opacity: 1;
-    `}
-  `};
+  ${({ isVisible }) =>
+    isVisible &&
+    css`
+      opacity: 0.2;
+      visibility: visible;
+      transition: opacity ${({ theme }) => theme.effects.transition.base},
+        visibility ${({ theme }) => theme.effects.transition.none} 0s;
+    `};
 `;
 
 const StyledNav = styled.nav`
@@ -39,7 +40,7 @@ const StyledNav = styled.nav`
     width: 100%;
     top: 0;
     left: 0;
-    padding: 10rem 2rem 4rem;
+    padding: 8rem 2rem 4rem;
     transform: translateY(-100%);
     z-index: 200;
     transition: transform ${props => props.theme.effects.transition.base} 0.2s;
@@ -88,7 +89,7 @@ const StyledList = styled.ul`
 
 const StyledLink = styled(Link)`
   display: inline-block;
-  font-weight: bold;
+  font-weight: 700;
   margin-right: 3rem;
   text-decoration: none;
   color: ${props => props.theme.color.text.primary};
@@ -180,14 +181,17 @@ const StyledInner = styled.span`
   `};
 `;
 
-const Navigation = props => {
+const ButtonMargin = styled(Button)`
+  margin-right: 20px;
+`;
+
+const Navigation = ({ firebase }) => {
+  const authUser = useContext(AuthUserContext);
   const [menuState, setMenuState] = useState(false);
 
-  const { onOverlayClick } = props;
-
-  const onLinkClick = () => {
-    setMenuState(false);
-  };
+  const onLinkClick = () => setMenuState(false);
+  const onOverlayClick = () => setMenuState(false);
+  const logout = () => firebase.logout();
 
   return (
     <Fragment>
@@ -195,34 +199,51 @@ const Navigation = props => {
         <StyledWrapper isMenuOpened={menuState}>
           <StyledList>
             <li>
-              <StyledLink to="/about" onClick={onLinkClick}>
-                O nas
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink to="/contact" onClick={onLinkClick}>
-                Contact
+              <StyledLink to="/offers" onClick={onLinkClick}>
+                Oferty
               </StyledLink>
             </li>
           </StyledList>
-          <StyledCTA to="/" onClick={onLinkClick}>
-            Dodaj ofertę
-          </StyledCTA>
+          {authUser ? (
+            <ButtonMargin as={Link} to="/" onClick={logout}>
+              Wyloguj się
+            </ButtonMargin>
+          ) : (
+            <ButtonMargin as={Link} to="/signin" onClick={onLinkClick}>
+              Zaloguj się
+            </ButtonMargin>
+          )}
+          {authUser ? (
+            <SecondaryButton
+              as={Link}
+              to="/new-offer"
+              onClick={onLinkClick}
+              secondary
+            >
+              Dodaj ofertę
+            </SecondaryButton>
+          ) : (
+            <SecondaryButton
+              as={Link}
+              to="/signup"
+              onClick={onLinkClick}
+              secondary
+            >
+              Załóż konto
+            </SecondaryButton>
+          )}
         </StyledWrapper>
       </StyledNav>
       <StyledButton onClick={() => setMenuState(!menuState)}>
         <StyledInner isMenuOpened={menuState} />
       </StyledButton>
-      <StyledOverlay isMenuOpened={menuState} onClick={onOverlayClick} />
+      <StyledOverlay isVisible={menuState} onClick={onOverlayClick} />
     </Fragment>
   );
 };
 
 Navigation.propTypes = {
-  isMenuOpened: PropTypes.bool.isRequired,
-  onLinkClick: PropTypes.func.isRequired,
-  onMobileMenuButtonClick: PropTypes.func.isRequired,
-  onOverlayClick: PropTypes.func.isRequired
+  firebase: PropTypes.object
 };
 
-export default Navigation;
+export default withFirebase(Navigation);

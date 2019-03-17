@@ -1,35 +1,40 @@
 import React from "react";
 
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Heading from "../../styled-components/Heading";
-import StyledCTA from "../../components/StyledCTA";
+import Subheading from "../../styled-components/Subheading";
+import { PrimaryButton } from "../../styled-components/Buttons";
+import { Column, ColumnContainer } from "../../styled-components/Columns";
+import artwork from "../../assets/images/artwork.png";
 
 const Image = styled.img`
   display: block;
   margin: 20px auto;
 `;
 
-const SubHeading = styled.h2`
-  font-weight: 300;
-  margin: 0;
-`;
-
-const Paragraph = styled.p`
-  color: #777;
-  font-size: 0.9rem;
+const HeroColumnContainer = styled(ColumnContainer)`
+  align-items: center;
+  padding: 30px 0;
 `;
 
 export default () => (
-  <div>
-    <Heading>Rozpocznij karierę w IT.</Heading>
-    <SubHeading>Przeglądaj tysiące ofert i aplikuj.</SubHeading>
-    <Paragraph>
-      Strona AKAI Jobs pomaga codziennie tysiącom osób w znalezieniu najlepszego
-      punktu startowego na ścieżce kariery. Odkryj wymarzoną pierwszą pracę i
-      zdobądź pierwsze doświadczenia w świecie IT.
-    </Paragraph>
-    <Image src="https://via.placeholder.com/350/ddddFF/808080" />
-    <StyledCTA to="/offers">Przeglądaj oferty</StyledCTA>
-  </div>
+  <HeroColumnContainer>
+    <Column>
+      <Heading>Rozpocznij karierę w IT.</Heading>
+      <Subheading as="h2">Przeglądaj tysiące ofert i aplikuj.</Subheading>
+      <p>
+        Strona skyrocket pomaga codziennie tysiącom osób w znalezieniu
+        najlepszego punktu startowego na ścieżce kariery. Odkryj wymarzoną
+        pierwszą pracę i zdobądź pierwsze doświadczenia w świecie IT.
+      </p>
+      <PrimaryButton large as={Link} to="/offers">
+        Przeglądaj oferty
+      </PrimaryButton>
+    </Column>
+    <Column>
+      <Image src={artwork} />
+    </Column>
+  </HeroColumnContainer>
 );

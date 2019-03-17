@@ -1,72 +1,106 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { compose } from "recompose";
+
+import { withFirebase } from "../../firebase";
 
 import Container from "../../components/Container";
+import JobOfferHeader from "../../components/JobOfferHeader";
+import JobOfferSkills from "../../components/JobOfferSkills";
+import JobOfferApply from "../../components/JobOfferApply";
+import {
+  ColumnContainer,
+  Column,
+  MainColumn,
+  SideColumn
+} from "../../styled-components/Columns";
+import BackButton from "../../styled-components/BackButton";
+import HeadingSecondary from "../../styled-components/HeadingSecondary";
+import { pageView } from "../../services/AnalyticsService";
 
-const OfferPage = ({ match }) => {
+const OfferPage = ({ match, firebase }) => {
   const [offer, setOffer] = useState(false);
   const [company, setCompany] = useState(false);
 
   useEffect(() => {
-    fetch(`/offer/${match.params.id}.json`)
-      .then(data => data.json())
-      .then(data => {
-        console.log(data);
-        setOffer(data);
-        fetch(`/company/${data.company.toLowerCase()}.json`)
-          .then(response => response.json())
-          .then(c => setCompany(c));
-      })
-      .catch(() => {
-        // window.location.pathname = "/";
+    pageView();
+    firebase.firestore
+      .collection("offer")
+      .doc(match.params.id)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          setOffer({ id: doc.id, ...doc.data() });
+
+          firebase.firestore
+            .collection("companies")
+            .where("name", "==", doc.data().company)
+            .get()
+            .then(query => {
+              query.forEach(doc2 => {
+                setCompany({ id: doc2.id, ...doc2.data() });
+              });
+            });
+        }
       });
   }, []);
 
   if (!offer) {
-    return "Loading... please wait...";
+    return (
+      <Container padded>Ładujemy najświeższe dane. Prosimy czekać...</Container>
+    );
   }
 
   return (
-    <Container>
-      <Link to="/offers">Wróć do listy ofert</Link>
-      <img src={offer.image} alt={`Logo ${offer.company}`} />
-      <h2>{offer.name}</h2>
-      <p>{`${offer.salary.min} - ${offer.salary.max}`}</p>
+    <Container padded>
+      <ColumnContainer>
+        <MainColumn>
+          <BackButton as={Link} to="/offers" small>
+            Wróć do listy ofert
+          </BackButton>
+          <JobOfferHeader offer={offer} />
+          {offer.skills && <JobOfferSkills skills={offer.skills} />}
+          <ColumnContainer>
+            {offer.technologies && (
+              <Column>
+                <HeadingSecondary>Technologie</HeadingSecondary>
+                <ul>
+                  {offer.technologies.map((technology, i) => (
+                    <li key={i}>{technology.name}</li>
+                  ))}
+                </ul>
+              </Column>
+            )}
+            <Column>
+              <HeadingSecondary>{offer.description.title}</HeadingSecondary>
+              <p>{offer.description.text}</p>
+            </Column>
+          </ColumnContainer>
 
-      <h3>Wymagane umiejętności</h3>
-      <ul>
-        {offer.skills.map((skill, i) => (
-          <li key={i}>
-            {skill.name} - {skill.stars}
-          </li>
-        ))}
-      </ul>
-
-      <h3>Technologie</h3>
-      <ul>
-        {offer.technologies.map((technology, i) => (
-          <li key={i}>{technology.name}</li>
-        ))}
-      </ul>
-
-      <h3>{offer.description.title}</h3>
-      {offer.description.text}
-
-      {company ? (
-        <div>
-          <h3>O firmie</h3>
-          {company.description}
-        </div>
-      ) : (
-        ""
-      )}
+          {company ? (
+            <div>
+              <HeadingSecondary>O firmie</HeadingSecondary>
+              <p>{company.description}</p>
+            </div>
+          ) : (
+            ""
+          )}
+        </MainColumn>
+        <SideColumn>
+          <JobOfferApply offer={offer} company={company} />
+        </SideColumn>
+      </ColumnContainer>
     </Container>
   );
 };
 
 OfferPage.propTypes = {
-  match: PropTypes.shape.isRequired
+  match: PropTypes.shape.isRequired,
+  firebase: PropTypes.shape.isRequired
 };
 
-export default OfferPage;
+export default compose(
+  withFirebase,
+  withRouter
+)(OfferPage);

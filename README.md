@@ -50,6 +50,10 @@ Choose branch for deployment in travis.yml file.
 
 Travis will automaticly deploy app on Firebase hosting.
 
+## Screenshots
+![](https://raw.githubusercontent.com/akai-org/jobs-web/develop/Screenshot-1.png)
+![](https://raw.githubusercontent.com/akai-org/jobs-web/develop/Screenshot-2.png)
+
 ## Contributors
 
 - Tomasz Gil
